@@ -25,6 +25,16 @@ public class TerminalDisplay {
         _inputBox = inp;
     }
 
+    private const int MaxBlocks = 150;
+    private static readonly Typeface _terminalTypeface = new(TerminalFont, FontStyles.Normal, FontWeights.Normal, FontStretches.Normal);
+
+    private static void TrimExcessBlocks() {
+        if (_outputBox == null) return;
+        while (_outputBox.Document.Blocks.Count > MaxBlocks) {
+            _outputBox.Document.Blocks.Remove(_outputBox.Document.Blocks.FirstBlock);
+        }
+    }
+
     public static void AppendOutput(string text, Color? hexColor = null) {
         if (!_initialized) return;
         var color = hexColor ?? TerminalGreen;
@@ -34,6 +44,7 @@ public class TerminalDisplay {
         };
 
         var para = new Paragraph(run);
+        TrimExcessBlocks();
         _outputBox!.Document.Blocks.Add(para);
         _outputBox.ScrollToEnd();
     }
@@ -51,6 +62,7 @@ public class TerminalDisplay {
             if (lastPara != null) lastPara.Inlines.Add(run);
         }
         else {
+            TrimExcessBlocks();
             _outputBox.Document.Blocks.Add(para);
         }
 
@@ -79,12 +91,11 @@ public class TerminalDisplay {
         var availableWidth =
             width - (_outputBox.Document.PagePadding.Left + _outputBox.Document.PagePadding.Right + 30);
 
-        var typeface = new Typeface(TerminalFont, FontStyles.Normal, FontWeights.Normal, FontStretches.Normal);
         var formattedText = new FormattedText(
             "- ",
             CultureInfo.InvariantCulture,
             FlowDirection.LeftToRight,
-            typeface,
+            _terminalTypeface,
             _outputBox.FontSize,
             Brushes.Black,
             VisualTreeHelper.GetDpi(_outputBox).PixelsPerDip
@@ -93,8 +104,7 @@ public class TerminalDisplay {
         var charCount = (int)(availableWidth / formattedText.Width);
         if (charCount <= 0) charCount = 50;
 
-        var line = "- ";
-        for (var i = 2; i < charCount - 2; i += 2) line += "- ";
+        var line = string.Concat(Enumerable.Repeat("- ", Math.Max(1, charCount / 2)));
         var run = new Run(line) {
             FontFamily = TerminalFont,
             FontSize = _outputBox.FontSize,
@@ -106,6 +116,7 @@ public class TerminalDisplay {
             Padding = new Thickness(0)
         };
 
+        TrimExcessBlocks();
         _outputBox.Document.Blocks.Add(para);
         _outputBox.ScrollToEnd();
     }

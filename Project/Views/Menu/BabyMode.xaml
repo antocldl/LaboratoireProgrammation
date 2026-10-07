@@ -28,7 +28,7 @@
                                     <DropShadowEffect x:Name="GlowEffect"
                                                       Color="{x:Static colorhelper:ColorHelper.FancyText}"
                                                       ShadowDepth="0"
-                                                      BlurRadius="18"
+                                                      BlurRadius="8"
                                                       Opacity="0.85" />
                                 </Border.Effect>
                             </Border>
@@ -40,10 +40,13 @@
                                     Padding="{TemplateBinding Padding}">
                                 <Grid>
                                     <Border x:Name="FillLayer"
-                                            HorizontalAlignment="Left"
-                                            Width="0"
                                             Background="{x:Static colorhelper:ColorHelper.FancyTextBrush}"
-                                            Opacity="0.15" />
+                                            Opacity="0.15"
+                                            RenderTransformOrigin="0,0.5">
+                                        <Border.RenderTransform>
+                                            <ScaleTransform ScaleX="0" ScaleY="1" />
+                                        </Border.RenderTransform>
+                                    </Border>
                                     <ContentPresenter />
                                 </Grid>
                             </Border>
@@ -56,8 +59,8 @@
                                         <Storyboard>
                                             <DoubleAnimation
                                                 Storyboard.TargetName="FillLayer"
-                                                Storyboard.TargetProperty="Width"
-                                                To="1200" Duration="0:0:0.25"
+                                                Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)"
+                                                To="1" Duration="0:0:0.25"
                                                 EasingFunction="{x:Null}" />
                                             <DoubleAnimation
                                                 Storyboard.TargetName="FillLayer"
@@ -79,7 +82,7 @@
                                         <Storyboard>
                                             <DoubleAnimation
                                                 Storyboard.TargetName="FillLayer"
-                                                Storyboard.TargetProperty="Width"
+                                                Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)"
                                                 To="0" Duration="0:0:0.2" />
                                             <DoubleAnimation
                                                 Storyboard.TargetName="FillLayer"
@@ -127,7 +130,7 @@
                                     <DropShadowEffect x:Name="GlowEffect"
                                                       Color="{x:Static colorhelper:ColorHelper.Warning}"
                                                       ShadowDepth="0"
-                                                      BlurRadius="18"
+                                                      BlurRadius="8"
                                                       Opacity="0.85" />
                                 </Border.Effect>
                             </Border>
@@ -139,10 +142,13 @@
                                     Padding="{TemplateBinding Padding}">
                                 <Grid>
                                     <Border x:Name="FillLayer"
-                                            HorizontalAlignment="Left"
-                                            Width="0"
                                             Background="{x:Static colorhelper:ColorHelper.WarningBrush}"
-                                            Opacity="0.15" />
+                                            Opacity="0.15"
+                                            RenderTransformOrigin="0,0.5">
+                                        <Border.RenderTransform>
+                                            <ScaleTransform ScaleX="0" ScaleY="1" />
+                                        </Border.RenderTransform>
+                                    </Border>
                                     <ContentPresenter />
                                 </Grid>
                             </Border>
@@ -155,8 +161,8 @@
                                         <Storyboard>
                                             <DoubleAnimation
                                                 Storyboard.TargetName="FillLayer"
-                                                Storyboard.TargetProperty="Width"
-                                                To="1200" Duration="0:0:0.25"
+                                                Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)"
+                                                To="1" Duration="0:0:0.25"
                                                 EasingFunction="{x:Null}" />
                                             <DoubleAnimation
                                                 Storyboard.TargetName="FillLayer"
@@ -178,7 +184,7 @@
                                         <Storyboard>
                                             <DoubleAnimation
                                                 Storyboard.TargetName="FillLayer"
-                                                Storyboard.TargetProperty="Width"
+                                                Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)"
                                                 To="0" Duration="0:0:0.2" />
                                             <DoubleAnimation
                                                 Storyboard.TargetName="FillLayer"
@@ -226,7 +232,7 @@
                                     <DropShadowEffect x:Name="GlowEffect"
                                                       Color="{x:Static colorhelper:ColorHelper.FadeRed}"
                                                       ShadowDepth="0"
-                                                      BlurRadius="18"
+                                                      BlurRadius="8"
                                                       Opacity="0.85" />
                                 </Border.Effect>
                             </Border>
@@ -238,10 +244,13 @@
                                     Padding="{TemplateBinding Padding}">
                                 <Grid>
                                     <Border x:Name="FillLayer"
-                                            HorizontalAlignment="Left"
-                                            Width="0"
                                             Background="{x:Static colorhelper:ColorHelper.FadeRedBrush}"
-                                            Opacity="0.15" />
+                                            Opacity="0.15"
+                                            RenderTransformOrigin="0,0.5">
+                                        <Border.RenderTransform>
+                                            <ScaleTransform ScaleX="0" ScaleY="1" />
+                                        </Border.RenderTransform>
+                                    </Border>
                                     <ContentPresenter />
                                 </Grid>
                             </Border>
@@ -254,8 +263,8 @@
                                         <Storyboard>
                                             <DoubleAnimation
                                                 Storyboard.TargetName="FillLayer"
-                                                Storyboard.TargetProperty="Width"
-                                                To="1200" Duration="0:0:0.25"
+                                                Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)"
+                                                To="1" Duration="0:0:0.25"
                                                 EasingFunction="{x:Null}" />
                                             <DoubleAnimation
                                                 Storyboard.TargetName="FillLayer"
@@ -277,7 +286,7 @@
                                         <Storyboard>
                                             <DoubleAnimation
                                                 Storyboard.TargetName="FillLayer"
-                                                Storyboard.TargetProperty="Width"
+                                                Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)"
                                                 To="0" Duration="0:0:0.2" />
                                             <DoubleAnimation
                                                 Storyboard.TargetName="FillLayer"
@@ -325,7 +334,7 @@
                                     <DropShadowEffect x:Name="GlowEffect"
                                                       Color="{x:Static colorhelper:ColorHelper.Success}"
                                                       ShadowDepth="0"
-                                                      BlurRadius="18"
+                                                      BlurRadius="8"
                                                       Opacity="0.85" />
                                 </Border.Effect>
                             </Border>
@@ -337,10 +346,13 @@
                                     Padding="{TemplateBinding Padding}">
                                 <Grid>
                                     <Border x:Name="FillLayer"
-                                            HorizontalAlignment="Left"
-                                            Width="0"
                                             Background="{x:Static colorhelper:ColorHelper.SuccessBrush}"
-                                            Opacity="0.15" />
+                                            Opacity="0.15"
+                                            RenderTransformOrigin="0,0.5">
+                                        <Border.RenderTransform>
+                                            <ScaleTransform ScaleX="0" ScaleY="1" />
+                                        </Border.RenderTransform>
+                                    </Border>
                                     <ContentPresenter />
                                 </Grid>
                             </Border>
@@ -353,8 +365,8 @@
                                         <Storyboard>
                                             <DoubleAnimation
                                                 Storyboard.TargetName="FillLayer"
-                                                Storyboard.TargetProperty="Width"
-                                                To="1200" Duration="0:0:0.25"
+                                                Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)"
+                                                To="1" Duration="0:0:0.25"
                                                 EasingFunction="{x:Null}" />
                                             <DoubleAnimation
                                                 Storyboard.TargetName="FillLayer"
@@ -376,7 +388,7 @@
                                         <Storyboard>
                                             <DoubleAnimation
                                                 Storyboard.TargetName="FillLayer"
-                                                Storyboard.TargetProperty="Width"
+                                                Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)"
                                                 To="0" Duration="0:0:0.2" />
                                             <DoubleAnimation
                                                 Storyboard.TargetName="FillLayer"
@@ -424,7 +436,7 @@
                                     <DropShadowEffect x:Name="GlowEffect"
                                                       Color="{x:Static colorhelper:ColorHelper.Hospi}"
                                                       ShadowDepth="0"
-                                                      BlurRadius="18"
+                                                      BlurRadius="8"
                                                       Opacity="0.85" />
                                 </Border.Effect>
                             </Border>
@@ -436,10 +448,13 @@
                                     Padding="{TemplateBinding Padding}">
                                 <Grid>
                                     <Border x:Name="FillLayer"
-                                            HorizontalAlignment="Left"
-                                            Width="0"
                                             Background="{x:Static colorhelper:ColorHelper.HospiBrush}"
-                                            Opacity="0.15" />
+                                            Opacity="0.15"
+                                            RenderTransformOrigin="0,0.5">
+                                        <Border.RenderTransform>
+                                            <ScaleTransform ScaleX="0" ScaleY="1" />
+                                        </Border.RenderTransform>
+                                    </Border>
                                     <ContentPresenter />
                                 </Grid>
                             </Border>
@@ -452,8 +467,8 @@
                                         <Storyboard>
                                             <DoubleAnimation
                                                 Storyboard.TargetName="FillLayer"
-                                                Storyboard.TargetProperty="Width"
-                                                To="1200" Duration="0:0:0.25"
+                                                Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)"
+                                                To="1" Duration="0:0:0.25"
                                                 EasingFunction="{x:Null}" />
                                             <DoubleAnimation
                                                 Storyboard.TargetName="FillLayer"
@@ -475,7 +490,7 @@
                                         <Storyboard>
                                             <DoubleAnimation
                                                 Storyboard.TargetName="FillLayer"
-                                                Storyboard.TargetProperty="Width"
+                                                Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)"
                                                 To="0" Duration="0:0:0.2" />
                                             <DoubleAnimation
                                                 Storyboard.TargetName="FillLayer"

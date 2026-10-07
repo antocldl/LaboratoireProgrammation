@@ -54,12 +54,16 @@ public partial class Exo1B3 : UserControl {
         ComboSmtp.SelectedItem = 587;
     }
 
-    private void InitFonts() {
+    private async void InitFonts() {
         var fonts = new List<string> { "Ubuntu Mono", "Consolas", "Courier New", "Arial", "Calibri", "Times New Roman" };
-        var systemFonts = Fonts.SystemFontFamilies.Select(f => f.Source).OrderBy(f => f).ToList();
+        FontFamilyCombo.ItemsSource = fonts;
+        FontFamilyCombo.SelectedItem = "Consolas";
+
+        var systemFonts = await Task.Run(() => Fonts.SystemFontFamilies.Select(f => f.Source).OrderBy(f => f).ToList());
         foreach (var sf in systemFonts)
             if (!fonts.Contains(sf))
                 fonts.Add(sf);
+        FontFamilyCombo.ItemsSource = null;
         FontFamilyCombo.ItemsSource = fonts;
         FontFamilyCombo.SelectedItem = "Consolas";
     }

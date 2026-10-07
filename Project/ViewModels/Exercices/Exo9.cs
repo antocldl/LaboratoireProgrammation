@@ -100,9 +100,10 @@ public partial class Exo9 : UserControl {
 
     private void RunPump(char id) {
         var rnd = new Random();
+        var str = id.ToString();
         for (var i = 0; i < 250; i++) {
             Thread.Sleep(rnd.Next(1, 5));
-            Dispatcher.Invoke(() => { TxtPumpLog.Text += id; });
+            Dispatcher.BeginInvoke(() => { TxtPumpLog.Text += str; });
         }
     }
 

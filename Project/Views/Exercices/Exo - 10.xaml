@@ -25,7 +25,7 @@
                                 <Border.Effect>
                                     <DropShadowEffect x:Name="GlowEffect"
                                                       Color="{x:Static colorhelper:ColorHelper.FancyText}"
-                                                      ShadowDepth="0" BlurRadius="18" Opacity="0.85" />
+                                                      ShadowDepth="0" BlurRadius="8" Opacity="0.85" />
                                 </Border.Effect>
                             </Border>
 
@@ -34,9 +34,14 @@
                                     BorderThickness="{TemplateBinding BorderThickness}"
                                     Padding="{TemplateBinding Padding}">
                                 <Grid>
-                                    <Border x:Name="FillLayer" HorizontalAlignment="Left" Width="0"
+                                    <Border x:Name="FillLayer"
                                             Background="{x:Static colorhelper:ColorHelper.FancyTextBrush}"
-                                            Opacity="0.15" />
+                                            Opacity="0.15"
+                                            RenderTransformOrigin="0,0.5">
+                                        <Border.RenderTransform>
+                                            <ScaleTransform ScaleX="0" ScaleY="1" />
+                                        </Border.RenderTransform>
+                                    </Border>
                                     <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
                                 </Grid>
                             </Border>
@@ -48,7 +53,7 @@
                                     <BeginStoryboard>
                                         <Storyboard>
                                             <DoubleAnimation Storyboard.TargetName="FillLayer"
-                                                             Storyboard.TargetProperty="Width" To="1200"
+                                                             Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)" To="1"
                                                              Duration="0:0:0.25" EasingFunction="{x:Null}" />
                                             <DoubleAnimation Storyboard.TargetName="FillLayer"
                                                              Storyboard.TargetProperty="Opacity" To="0.18"
@@ -57,8 +62,8 @@
                                                              Storyboard.TargetProperty="Opacity" To="1"
                                                              Duration="0:0:0.2" />
                                             <ColorAnimation Storyboard.TargetName="CardBody"
-                                                            Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)"
-                                                            To="White" Duration="0:0:0.15" />
+                                                             Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)"
+                                                             To="White" Duration="0:0:0.15" />
                                             <ColorAnimation
                                                 Storyboard.TargetProperty="(Control.Foreground).(SolidColorBrush.Color)"
                                                 To="White" Duration="0:0:0.15" />
@@ -69,7 +74,7 @@
                                     <BeginStoryboard>
                                         <Storyboard>
                                             <DoubleAnimation Storyboard.TargetName="FillLayer"
-                                                             Storyboard.TargetProperty="Width" To="0"
+                                                             Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)" To="0"
                                                              Duration="0:0:0.2" />
                                             <DoubleAnimation Storyboard.TargetName="FillLayer"
                                                              Storyboard.TargetProperty="Opacity" To="0.12"

@@ -29,6 +29,20 @@ public partial class HexTileControl : UserControl {
     public event Action<HexTileControl, ControlCard>? CardDropped;
 
     private bool _lastIsP1 = true;
+    private ControlCard? _wastelandHoverCard;
+
+    public ControlCard WastelandHoverCard {
+        get {
+            if (_wastelandHoverCard == null) {
+                _wastelandHoverCard = new ControlCard {
+                    IsHitTestVisible = false,
+                    Margin = new Thickness(10, 0, 0, 0)
+                };
+                WastelandCardPopup.Child = _wastelandHoverCard;
+            }
+            return _wastelandHoverCard;
+        }
+    }
 
     public HexTileControl() { InitializeComponent(); }
 

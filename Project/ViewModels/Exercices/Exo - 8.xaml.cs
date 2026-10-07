@@ -81,40 +81,47 @@ public partial class Exo___8 : UserControl {
         }
     }
 
-    private void DisplayFolderAssets(string targetPath) {
+    private async void DisplayFolderAssets(string targetPath) {
         FileBrowser.Items.Clear();
 
         try {
             if (!Directory.Exists(targetPath)) return;
 
-            var childDirectories = Directory.GetDirectories(targetPath);
-            foreach (var dirPath in childDirectories) {
-                var dirInfo = new DirectoryInfo(dirPath);
-                FileBrowser.Items.Add(new FileSystemEntity {
-                    EntityName = dirInfo.Name,
-                    EntitySize = "<DIR>",
-                    CreationDate = dirInfo.CreationTime.ToString("yyyy-MM-dd HH:mm"),
-                    ModificationDate = dirInfo.LastWriteTime.ToString("yyyy-MM-dd HH:mm"),
-                    FullPath = dirInfo.FullName,
-                    IsDirectory = true
-                });
+            var entities = await Task.Run(() => {
+                var list = new List<FileSystemEntity>();
+                var childDirectories = Directory.GetDirectories(targetPath);
+                foreach (var dirPath in childDirectories) {
+                    var dirInfo = new DirectoryInfo(dirPath);
+                    list.Add(new FileSystemEntity {
+                        EntityName = dirInfo.Name,
+                        EntitySize = "<DIR>",
+                        CreationDate = dirInfo.CreationTime.ToString("yyyy-MM-dd HH:mm"),
+                        ModificationDate = dirInfo.LastWriteTime.ToString("yyyy-MM-dd HH:mm"),
+                        FullPath = dirInfo.FullName,
+                        IsDirectory = true
+                    });
+                }
+
+                var targetFiles = Directory.GetFiles(targetPath);
+                foreach (var filePath in targetFiles) {
+                    var assetInfo = new FileInfo(filePath);
+                    list.Add(new FileSystemEntity {
+                        EntityName = assetInfo.Name,
+                        EntitySize = FormatAssetSize(assetInfo.Length),
+                        CreationDate = assetInfo.CreationTime.ToString("yyyy-MM-dd HH:mm"),
+                        ModificationDate = assetInfo.LastWriteTime.ToString("yyyy-MM-dd HH:mm"),
+                        FullPath = assetInfo.FullName,
+                        IsDirectory = false
+                    });
+                }
+                return list;
+            });
+
+            foreach (var entity in entities) {
+                FileBrowser.Items.Add(entity);
             }
 
-            var targetFiles = Directory.GetFiles(targetPath);
-            foreach (var filePath in targetFiles) {
-                var assetInfo = new FileInfo(filePath);
-                FileBrowser.Items.Add(new FileSystemEntity {
-                    EntityName = assetInfo.Name,
-                    EntitySize = FormatAssetSize(assetInfo.Length),
-                    CreationDate = assetInfo.CreationTime.ToString("yyyy-MM-dd HH:mm"),
-                    ModificationDate = assetInfo.LastWriteTime.ToString("yyyy-MM-dd HH:mm"),
-                    FullPath = assetInfo.FullName,
-                    IsDirectory = false
-                });
-            }
-
-            var totalItems = childDirectories.Length + targetFiles.Length;
-            SystemStatusIndicator.Text = $"[ SUCCESS ] Loaded {totalItems} items from {targetPath}";
+            SystemStatusIndicator.Text = $"[ SUCCESS ] Loaded {entities.Count} items from {targetPath}";
         }
         catch (UnauthorizedAccessException) {
             SystemStatusIndicator.Text = "[ DENIED ] Access restricted to selected directory";

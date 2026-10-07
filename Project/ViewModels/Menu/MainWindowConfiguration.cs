@@ -6,7 +6,7 @@ public class MainWindowConfiguration {
     public static double Width = 1920;
 
     public static string Title = "@anto.cldl";
-    public static bool AllowTransparency = true;
+    public static bool AllowTransparency = false;
 
     // [Additional data used for Overseer Wars]
 

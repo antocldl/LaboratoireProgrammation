@@ -12,14 +12,18 @@ public partial class Exo7 : UserControl {
     public Exo7() {
         InitializeComponent();
 
-        Loaded += (s, e) => {
+        IsVisibleChanged += (s, e) => {
             var parentWindow = Window.GetWindow(this);
-            if (parentWindow != null) {
+            if (parentWindow == null) return;
+
+            parentWindow.PreviewKeyDown -= ParentWindow_PreviewKeyDown;
+            parentWindow.PreviewKeyUp -= ParentWindow_PreviewKeyUp;
+
+            if (IsVisible) {
                 parentWindow.PreviewKeyDown += ParentWindow_PreviewKeyDown;
                 parentWindow.PreviewKeyUp += ParentWindow_PreviewKeyUp;
+                UpdateToggleKeys();
             }
-
-            UpdateToggleKeys();
         };
 
         Unloaded += (s, e) => {

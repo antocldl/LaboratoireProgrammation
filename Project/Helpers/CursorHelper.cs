@@ -20,9 +20,14 @@ public class CursorHelper {
     private static extern bool GetIconInfo(IntPtr hIcon, ref IconInfo pIconInfo);
 
 
+    [DllImport("user32.dll", SetLastError = true)]
+    private static extern bool DestroyIcon(IntPtr hIcon);
+
     private static Cursor InternalCreateCursor(Bitmap bmp, int xHotSpot, int yHotSpot) {
         var tmp = new IconInfo();
-        GetIconInfo(bmp.GetHicon(), ref tmp);
+        var hIcon = bmp.GetHicon();
+        GetIconInfo(hIcon, ref tmp);
+        DestroyIcon(hIcon);
         tmp.xHotspot = xHotSpot;
         tmp.yHotspot = yHotSpot;
         tmp.fIcon = false;

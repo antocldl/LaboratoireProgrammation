@@ -519,14 +519,8 @@ public partial class ControlCard : UserControl {
 
         if (shouldGlow) {
             CardGlow.Color = targetColor;
+            CardGlow.BlurRadius = 12;
             
-            var blurAnim = new DoubleAnimation {
-                From = 6,
-                To = 18,
-                Duration = TimeSpan.FromSeconds(1.2),
-                AutoReverse = true,
-                RepeatBehavior = RepeatBehavior.Forever
-            };
             var opacityAnim = new DoubleAnimation {
                 From = 0.3 * GlowSubtleness,
                 To = 0.9 * GlowSubtleness,
@@ -535,10 +529,8 @@ public partial class ControlCard : UserControl {
                 RepeatBehavior = RepeatBehavior.Forever
             };
 
-            CardGlow.BeginAnimation(System.Windows.Media.Effects.DropShadowEffect.BlurRadiusProperty, blurAnim);
             CardGlow.BeginAnimation(System.Windows.Media.Effects.DropShadowEffect.OpacityProperty, opacityAnim);
         } else {
-            CardGlow.BeginAnimation(System.Windows.Media.Effects.DropShadowEffect.BlurRadiusProperty, null);
             CardGlow.BeginAnimation(System.Windows.Media.Effects.DropShadowEffect.OpacityProperty, null);
             CardGlow.BlurRadius = 0;
             CardGlow.Opacity = 0;

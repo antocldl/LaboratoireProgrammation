@@ -14,7 +14,7 @@
         <SolidColorBrush x:Key="PlayerAccentBrush" Color="#FFC346"/>
         <SolidColorBrush x:Key="PlayerAccentDimBrush" Color="#44FFC346"/>
         <SolidColorBrush x:Key="PlayerBgBrush" Color="#141414"/>
-        <DropShadowEffect x:Key="PlayerAccentGlow" Color="#FFC346" BlurRadius="120" ShadowDepth="0" Opacity="0.2"/>
+        <DropShadowEffect x:Key="PlayerAccentGlow" Color="#FFC346" BlurRadius="12" ShadowDepth="0" Opacity="0.2"/>
         
         <Style TargetType="TextBlock" x:Key="TerminalText">
             <Setter Property="Foreground" Value="{DynamicResource PlayerAccentBrush}"/>

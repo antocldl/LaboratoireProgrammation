@@ -1,6 +1,7 @@
 using System.Data;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using LaboratoireProgrammation.Project.Helpers;
@@ -26,6 +27,19 @@ public partial class ConnectControl : UserControl {
     private bool isTrying;
     private MySqlDataReader myReader;
     private int TrialsLeft = 4;
+    private static Cursor? _hourglassCursor;
+
+    private static Cursor GetHourglassCursor() {
+        if (_hourglassCursor != null) return _hourglassCursor;
+        var cursorImage = new Image {
+            LayoutTransform = new ScaleTransform(6, 6),
+            Source = new BitmapImage(new Uri(
+                "pack://application:,,,/LaboratoireProgrammation;component/Assets/images/hourglass.png",
+                UriKind.Absolute))
+        };
+        _hourglassCursor = CursorHelper.CreateCursor(cursorImage, 40, 40);
+        return _hourglassCursor;
+    }
 
     public ConnectControl() {
         InitializeComponent();
@@ -45,17 +59,8 @@ public partial class ConnectControl : UserControl {
         var parentWindow = WindowHelper.getParentWindow(this);
 
         if (parentWindow != null) {
-            var cursorImage = new Image();
-            cursorImage.LayoutTransform = new ScaleTransform(6, 6);
-            cursorImage.Source =
-                new BitmapImage(new Uri(
-                    "pack://application:,,,/LaboratoireProgrammation;component/Assets/images/hourglass.png",
-                    UriKind.Absolute));
-            parentWindow.Cursor = CursorHelper.CreateCursor(cursorImage, 40, 40);
+            parentWindow.Cursor = GetHourglassCursor();
         }
-
-        await Task.Delay(1800);
-
 
         if (DbTypeInput.SelectedIndex == 1) {
             var msSqlConnString =
@@ -71,7 +76,7 @@ public partial class ConnectControl : UserControl {
         var db = new SqlUtils(connectionFactory);
 
         try {
-            db.AssertStatus();
+            await Task.Run(() => db.AssertStatus());
         }
         catch (Exception ex) {
             pbStatus.Visibility = Visibility.Hidden;

@@ -282,17 +282,42 @@ public class CRT : ShaderEffect {
         set => SetValue(ScanlineSpeedProperty, value);
     }
 
+    private bool _isAppActive = true;
+
     public void StartAnimation() {
         if (_animationTimer != null) return;
-        _animationTimer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(16) };
+
+        if (Application.Current != null) {
+            Application.Current.Activated -= OnAppActivated;
+            Application.Current.Activated += OnAppActivated;
+            Application.Current.Deactivated -= OnAppDeactivated;
+            Application.Current.Deactivated += OnAppDeactivated;
+        }
+
+        _animationTimer = new DispatcherTimer(DispatcherPriority.Background) {
+            Interval = TimeSpan.FromMilliseconds(66)
+        };
         _animationTimer.Tick += (s, e) => {
-            _time += 0.016;
+            if (!_isAppActive) return;
+            _time += 0.066;
             Time = _time;
         };
         _animationTimer.Start();
     }
 
+    private void OnAppActivated(object? sender, EventArgs e) {
+        _isAppActive = true;
+    }
+
+    private void OnAppDeactivated(object? sender, EventArgs e) {
+        _isAppActive = false;
+    }
+
     public void StopAnimation() {
+        if (Application.Current != null) {
+            Application.Current.Activated -= OnAppActivated;
+            Application.Current.Deactivated -= OnAppDeactivated;
+        }
         _animationTimer?.Stop();
         _animationTimer = null;
     }

@@ -94,7 +94,18 @@ public partial class Wastelands : UserControl {
 
         _gameLoopTimer.Interval = TimeSpan.FromMilliseconds(32);
         _gameLoopTimer.Tick += OnGameLoopTick!;
-        _gameLoopTimer.Start();
+
+        IsVisibleChanged += (s, e) => {
+            if (IsVisible) {
+                if (!_gameLoopTimer.IsEnabled) _gameLoopTimer.Start();
+            } else {
+                _gameLoopTimer.Stop();
+            }
+        };
+
+        Unloaded += (s, e) => {
+            _gameLoopTimer.Stop();
+        };
 
         InitTeamsAndDwellers();
 
@@ -104,6 +115,7 @@ public partial class Wastelands : UserControl {
             InvalidateVisual();
             RefreshDwellerVisuals();
             Focus();
+            if (IsVisible && !_gameLoopTimer.IsEnabled) _gameLoopTimer.Start();
         };
 
         SizeChanged += (s, e) => {

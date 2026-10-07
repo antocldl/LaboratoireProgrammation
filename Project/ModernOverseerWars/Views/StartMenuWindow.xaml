@@ -13,7 +13,7 @@
         <SolidColorBrush x:Key="TerminalGreen" Color="#FFC346"/>
         <SolidColorBrush x:Key="TerminalDim" Color="#FFC346"/>
         
-        <DropShadowEffect x:Key="PhosphorGlow" Color="#47FFC346" BlurRadius="170" ShadowDepth="8" Opacity="0.2"/>
+        <DropShadowEffect x:Key="PhosphorGlow" Color="#47FFC346" BlurRadius="12" ShadowDepth="0" Opacity="0.2"/>
         
         <Style TargetType="TextBlock" x:Key="TerminalText">
             <Setter Property="Foreground" Value="{StaticResource TerminalGreen}"/>

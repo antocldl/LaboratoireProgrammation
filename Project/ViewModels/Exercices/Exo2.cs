@@ -37,7 +37,7 @@ public partial class Exo2 : UserControl {
                 for (var i = 0; i < 100; i++) {
                     var rng = rand.Next(10, 80);
 
-                    ProgressBar2.Dispatcher.Invoke(() => { ProgressBar2.Value++; });
+                    ProgressBar2.Dispatcher.BeginInvoke(() => { ProgressBar2.Value++; });
 
                     await Task.Delay(rng);
                 }

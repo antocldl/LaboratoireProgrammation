@@ -33,10 +33,10 @@ public partial class LaboElectroniqueESP8266 : UserControl {
         AjouterLog("Système", "Console initialisée. En attente de connexion...", _logRxBrush);
     }
 
-    private void ListerPortsCom() {
+    private async void ListerPortsCom() {
         try {
             CbxPorts.Items.Clear();
-            string[] ports = SerialPort.GetPortNames();
+            string[] ports = await Task.Run(() => SerialPort.GetPortNames());
 
             foreach (var port in ports) CbxPorts.Items.Add(port);
 

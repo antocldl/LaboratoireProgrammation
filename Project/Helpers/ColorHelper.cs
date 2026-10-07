@@ -19,74 +19,137 @@ public class ColorHelper {
     public static Color FadeRed = HexToColor("#F74343");
     public static Color Snow = HexToColor("#fcfeff");
 
+    private static SolidColorBrush MakeFrozen(Color color) {
+        var brush = new SolidColorBrush(color);
+        brush.Freeze();
+        return brush;
+    }
+
+    private static SolidColorBrush _fancyTextBrush = MakeFrozen(FancyText);
+    private static SolidColorBrush _hoverFancyTextBrush = MakeFrozen(HoverFancyText);
+    private static SolidColorBrush _homeBrush = MakeFrozen(HomeText);
+    private static SolidColorBrush _visualBrush = MakeFrozen(VisualText);
+    private static SolidColorBrush _textBrush = MakeFrozen(Text);
+    private static SolidColorBrush _userInputBrush = MakeFrozen(UserInput);
+    private static SolidColorBrush _informationBrush = MakeFrozen(Information);
+    private static SolidColorBrush _warningBrush = MakeFrozen(Warning);
+    private static SolidColorBrush _criticalBrush = MakeFrozen(Critical);
+    private static SolidColorBrush _successBrush = MakeFrozen(Success);
+    private static SolidColorBrush _fadeGreenBrush = MakeFrozen(FadeGreen);
+    private static SolidColorBrush _fadeRedBrush = MakeFrozen(FadeRed);
+    private static SolidColorBrush _snowBrush = MakeFrozen(Snow);
+    private static SolidColorBrush _hospiBrush = MakeFrozen(Hospi);
+
     public static SolidColorBrush FancyTextBrush {
-        get => new(FancyText);
-        set => FancyText = value.Color;
+        get => _fancyTextBrush;
+        set {
+            FancyText = value.Color;
+            _fancyTextBrush = MakeFrozen(FancyText);
+        }
     }
 
     public static SolidColorBrush HoverFancyTextBrush {
-        get => new(HoverFancyText);
-        set => HoverFancyText = value.Color;
+        get => _hoverFancyTextBrush;
+        set {
+            HoverFancyText = value.Color;
+            _hoverFancyTextBrush = MakeFrozen(HoverFancyText);
+        }
     }
 
     public static SolidColorBrush HomeBrush {
-        get => new(FancyText);
-        set => FancyText = value.Color;
+        get => _homeBrush;
+        set {
+            HomeText = value.Color;
+            _homeBrush = MakeFrozen(HomeText);
+        }
     }
 
     public SolidColorBrush VisualBrush {
-        get => new(VisualText);
-        set => VisualText = value.Color;
+        get => _visualBrush;
+        set {
+            VisualText = value.Color;
+            _visualBrush = MakeFrozen(VisualText);
+        }
     }
 
     public static SolidColorBrush TextBrush {
-        get => new(Text);
-        set => Text = value.Color;
+        get => _textBrush;
+        set {
+            Text = value.Color;
+            _textBrush = MakeFrozen(Text);
+        }
     }
 
     public static SolidColorBrush UserInputBrush {
-        get => new(UserInput);
-        set => UserInput = value.Color;
+        get => _userInputBrush;
+        set {
+            UserInput = value.Color;
+            _userInputBrush = MakeFrozen(UserInput);
+        }
     }
 
     public static SolidColorBrush InformationBrush {
-        get => new(Information);
-        set => Information = value.Color;
+        get => _informationBrush;
+        set {
+            Information = value.Color;
+            _informationBrush = MakeFrozen(Information);
+        }
     }
 
     public static SolidColorBrush WarningBrush {
-        get => new(Warning);
-        set => Warning = value.Color;
+        get => _warningBrush;
+        set {
+            Warning = value.Color;
+            _warningBrush = MakeFrozen(Warning);
+        }
     }
 
     public static SolidColorBrush CriticalBrush {
-        get => new(Critical);
-        set => Critical = value.Color;
+        get => _criticalBrush;
+        set {
+            Critical = value.Color;
+            _criticalBrush = MakeFrozen(Critical);
+        }
     }
 
     public static SolidColorBrush SuccessBrush {
-        get => new(Success);
-        set => Success = value.Color;
+        get => _successBrush;
+        set {
+            Success = value.Color;
+            _successBrush = MakeFrozen(Success);
+        }
     }
 
     public static SolidColorBrush FadeGreenBrush {
-        get => new(FadeGreen);
-        set => FadeGreen = value.Color;
+        get => _fadeGreenBrush;
+        set {
+            FadeGreen = value.Color;
+            _fadeGreenBrush = MakeFrozen(FadeGreen);
+        }
     }
 
     public static SolidColorBrush FadeRedBrush {
-        get => new(FadeRed);
-        set => FadeRed = value.Color;
+        get => _fadeRedBrush;
+        set {
+            FadeRed = value.Color;
+            _fadeRedBrush = MakeFrozen(FadeRed);
+        }
     }
 
     public static SolidColorBrush SnowBrush {
-        get => new(Snow);
-        set => Snow = value.Color;
+        get => _snowBrush;
+        set {
+            Snow = value.Color;
+            _snowBrush = MakeFrozen(Snow);
+        }
     }
     
     public static SolidColorBrush HospiBrush {
-        get => new(Hospi);
-        set => Hospi = value.Color;
+        get => _hospiBrush;
+        set {
+            Hospi = value.Color;
+            _hospiBrush = MakeFrozen(Hospi);
+        }
     }
 
 

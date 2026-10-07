@@ -13,10 +13,14 @@ public partial class FlashMaster : UserControl {
         RefreshPorts();
     }
 
-    private void RefreshPorts() {
+    private async void RefreshPorts() {
         CbxPorts.Items.Clear();
-        foreach (var port in SerialPort.GetPortNames()) CbxPorts.Items.Add(port);
-        if (CbxPorts.Items.Count > 0) CbxPorts.SelectedIndex = 0;
+        try {
+            var ports = await Task.Run(() => SerialPort.GetPortNames());
+            foreach (var port in ports) CbxPorts.Items.Add(port);
+            if (CbxPorts.Items.Count > 0) CbxPorts.SelectedIndex = 0;
+        }
+        catch { }
     }
 
 

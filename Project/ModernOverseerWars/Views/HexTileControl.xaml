@@ -15,9 +15,7 @@
              DragLeave="OnDragLeaveTile"
              DragOver="OnDragOverTile">
     <Grid>
-        <Popup x:Name="WastelandCardPopup" Placement="Right" PlacementTarget="{Binding ElementName=HexShape}" AllowsTransparency="True" IsOpen="False">
-            <modernOverseerWars:ControlCard x:Name="WastelandHoverCard" IsHitTestVisible="False" Margin="10,0,0,0"/>
-        </Popup>
+        <Popup x:Name="WastelandCardPopup" Placement="Right" PlacementTarget="{Binding ElementName=HexShape}" AllowsTransparency="True" IsOpen="False"/>
         <Rectangle x:Name="HexShape" StrokeThickness="1" Width="100" Height="100" SnapsToDevicePixels="True"/>
         <Rectangle x:Name="ReachableOverlay" Width="100" Height="100" Visibility="Collapsed" SnapsToDevicePixels="True"/>
         <Rectangle x:Name="HoverOverlay" Fill="#33FFFFFF" Visibility="Collapsed" IsHitTestVisible="False" Width="100" Height="100"/>

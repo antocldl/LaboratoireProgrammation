@@ -40,29 +40,42 @@ public class SimulationService : IDisposable {
         _lastPatientUpdate = _gameTime;
     }
 
+    private bool _isTicking;
+
     public void Start() {
         CatchUpSimulation();
-
         _clockTimer = new DispatcherTimer {
             Interval = TimeSpan.FromSeconds(HospitalSettings.Current.GameTickIntervalSeconds)
         };
-        _clockTimer.Tick += (s, e) => {
-            _gameTime = _gameTime.AddSeconds(HospitalSettings.Current.GameTickIntervalSeconds * HospitalSettings.Current.TimeScaleMultiplier);
-            OnTick?.Invoke(_gameTime);
+        _clockTimer.Tick += async (s, e) => {
+            if (_isTicking) return;
+            _isTicking = true;
+            try {
+                _gameTime = _gameTime.AddSeconds(HospitalSettings.Current.GameTickIntervalSeconds * HospitalSettings.Current.TimeScaleMultiplier);
+                OnTick?.Invoke(_gameTime);
 
-            int currentDay = (_gameTime - new DateTime(2026, 1, 1)).Days + 1;
-            _db.SaveRealLifeTime(DateTime.Now, currentDay, _gameTime.TimeOfDay);
-
-            UpdateDoctorsShifts();
-            UpdatePatientsTreatment();
-            CheckDayTransition();
+                int currentDay = (_gameTime - new DateTime(2026, 1, 1)).Days + 1;
+                var currentTime = _gameTime;
+                await Task.Run(() => {
+                    _db.SaveRealLifeTime(DateTime.Now, currentDay, currentTime.TimeOfDay);
+                    UpdateDoctorsShifts();
+                    UpdatePatientsTreatment();
+                    CheckDayTransition();
+                });
+            }
+            catch { }
+            finally {
+                _isTicking = false;
+            }
         };
         _clockTimer.Start();
         
         OnTick?.Invoke(_gameTime);
-        UpdateDoctorsShifts();
-        UpdatePatientsTreatment();
-        CheckDayTransition();
+        _ = Task.Run(() => {
+            UpdateDoctorsShifts();
+            UpdatePatientsTreatment();
+            CheckDayTransition();
+        });
     }
 
     public void Stop() {

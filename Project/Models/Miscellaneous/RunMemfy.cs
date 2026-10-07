@@ -40,15 +40,15 @@ public class RunMemfy {
             new SolidColorBrush(ColorHelper.HexToColor("#fcb3f9")));
         win.TerminalOutputPanel.Children.Add(descriptionBlock);
 
-        if (ConsoleBehavior.SpeedLoad) await Task.Delay(200);
-        else await Task.Delay(2000);
+        if (ConsoleBehavior.SpeedLoad) await Task.Delay(50);
+        else await Task.Delay(200);
 
         var authorBlock = TerminalDisplay.CreateTitleBlock("anto.cldl", 200 * fontMult,
             new SolidColorBrush(ColorHelper.HexToColor("#ffffff")));
         win.TerminalOutputPanel.Children.Add(authorBlock);
 
-        if (ConsoleBehavior.SpeedLoad) await Task.Delay(200);
-        else await Task.Delay(2000);
+        if (ConsoleBehavior.SpeedLoad) await Task.Delay(50);
+        else await Task.Delay(200);
 
         win.TerminalOutputPanel.Children.Clear();
 

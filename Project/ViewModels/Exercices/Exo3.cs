@@ -120,12 +120,15 @@ public partial class Exo3 : UserControl {
 
     private void DeleteFileClick(object sender, RoutedEventArgs e) {
         if (File.Exists(SelectedFilePath)) {
-            while (true)
+            for (var retry = 0; retry < 10; retry++) {
                 try {
                     File.Delete(SelectedFilePath);
                     break;
                 }
-                catch (IOException) { }
+                catch (IOException) {
+                    Thread.Sleep(50);
+                }
+            }
 
             SelectedFilePath = string.Empty;
             SelectedHumanIndex = -1;

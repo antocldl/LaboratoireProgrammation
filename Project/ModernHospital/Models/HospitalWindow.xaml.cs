@@ -48,9 +48,9 @@ public partial class HospitalWindow : Window {
                 }
             });
         };
-        _simulationService.OnEventLog += LogEvent;
-        _simulationService.OnNotification += (msg, col) => ShowToast(msg, col);
-        _simulationService.OnPersonnelChanged += RefreshPersonnel;
+        _simulationService.OnEventLog += msg => Dispatcher.Invoke(() => LogEvent(msg));
+        _simulationService.OnNotification += (msg, col) => Dispatcher.Invoke(() => ShowToast(msg, col));
+        _simulationService.OnPersonnelChanged += () => Dispatcher.Invoke(RefreshPersonnel);
         _simulationService.OnPatientsChanged += () => {
             Dispatcher.Invoke(() => {
                 RefreshPatients();
