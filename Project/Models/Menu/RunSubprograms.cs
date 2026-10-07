@@ -20,13 +20,24 @@ public class RunSubprograms {
         ESP8266,
         LabHospital,
         FlashMaster,
-        Uplink
+        Uplink,
+        Exercice1B3,
+        Exercice2B3
     }
 
     public static void RunSub(Subprograms sub, MainWindow win) {
+        win.OnExerciseOpened();
         switch (sub) {
             case Subprograms.Exercice1:
                 _ = MenuLoaders.Run_Exo1(win);
+                break;
+
+            case Subprograms.Exercice1B3:
+                _ = MenuLoaders.Run_Exo1B3(win);
+                break;
+            
+            case Subprograms.Exercice2B3:
+                _ = MenuLoaders.Run_Exo2B3(win);
                 break;
 
             case Subprograms.Exercice2:

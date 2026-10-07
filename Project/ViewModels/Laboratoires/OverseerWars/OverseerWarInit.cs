@@ -16,7 +16,9 @@ public class OverseerWarInit {
             win.OutputBox.Visibility = Visibility.Collapsed;
             win.TopText.Visibility = Visibility.Collapsed;
             win.BabyMode.Visibility = Visibility.Collapsed;
-            win.VisualMode.Visibility = Visibility.Collapsed;
+            win.BabyModeB3.Visibility = Visibility.Collapsed;
+            win.VisualModeB2.Visibility = Visibility.Collapsed;
+            win.VisualModeB3.Visibility = Visibility.Collapsed;
             win.MainMenuButton.Visibility = Visibility.Collapsed;
             win.WinBtnClose.Visibility = Visibility.Collapsed;
             win.WinBtnMinimize.Visibility = Visibility.Collapsed;

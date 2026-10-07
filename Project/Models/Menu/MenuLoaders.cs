@@ -19,12 +19,17 @@ public class MenuLoaders {
         FadeOnly
     }
 
-
     private const string _author = "@ anto.cldl";
     private const string _author2 = "MADE.BY :// @ anto.cldl";
 
     private const string _title_exo1 = "Exercice [ 1 ]";
     private const string _sub_exo1 = ": // DATE : FEB . 2026  //  BOUTONS ET IMAGES";
+
+    private const string _title_exo1b3 = "Exercice [ 1 - B3 ]";
+    private const string _sub_exo1b3 = ": // DATE : OCT . 2026  //  COURRIEL / SMTP DISPATCH";
+    
+    private const string _title_exo2b3 = "Exercice [ 2 - B3 ]";
+    private const string _sub_exo2b3 = ": // DATE : OCT . 2026  //  T.ODOO";
 
     private const string _title_exo2 = "Exercice [ 2 ]";
     private const string _sub_exo2 = ": // DATE : FEB . 2026  //  TRANSFERT DE FICHIERS";
@@ -76,6 +81,12 @@ public class MenuLoaders {
     private static readonly SolidColorBrush _exo1_sub = Brush("FFE170");
     private static readonly SolidColorBrush _exo1_author = Brush("FFFFFF");
 
+    private static readonly SolidColorBrush _exo1b3_title = Brush("3DD68C");
+    private static readonly SolidColorBrush _exo1b3_sub = Brush("75FFB4");
+    
+    private static readonly SolidColorBrush _exo2b3_title = Brush("fcfe4d");
+    private static readonly SolidColorBrush _exo2b3_sub = Brush("fcf4ed");
+
     private static readonly SolidColorBrush _exo2_title = Brush("FF4242");
     private static readonly SolidColorBrush _exo2_sub = Brush("FF9191");
 
@@ -113,11 +124,8 @@ public class MenuLoaders {
     private static readonly SolidColorBrush _main_sub = Brush("A63C3C");
     private static readonly SolidColorBrush _main_author = Brush("D3DEDD");
 
-    private static readonly FontFamily _fontTitle = new(new Uri("pack://application:,,,/"),
-        "./Assets/fonts/#bebas neue");
-
+    private static readonly FontFamily _fontTitle = new(new Uri("pack://application:,,,/"), "./Assets/fonts/#bebas neue");
     private static readonly FontFamily _fontSub = new(new Uri("pack://application:,,,/"), "./Assets/fonts/#bebas neue");
-
 
     private static SolidColorBrush Brush(string hex) {
         var b = new SolidColorBrush(ColorHelper.HexToColor(hex));
@@ -221,7 +229,6 @@ public class MenuLoaders {
         win.TerminalOutputPanel.VerticalAlignment = VerticalAlignment.Top;
     }
 
-
     private static async Task Wait(int ms) {
         var elapsed = 0;
         while (elapsed < ms && !_skipIntro) {
@@ -296,15 +303,15 @@ public class MenuLoaders {
 
     private static void HideEverything(MainWindow win) {
         win.OutputBox.Visibility = win.TopText.Visibility = win.InputBox.Visibility =
-            win.InputBoxIndicator.Visibility = win.VisualMode.Visibility = win.MainMenuButton.Visibility =
-                win.WinBtnClose.Visibility =
+            win.InputBoxIndicator.Visibility = win.VisualModeB2.Visibility = win.VisualModeB3.Visibility =
+                win.MainMenuButton.Visibility = win.WinBtnClose.Visibility =
                     win.WinBtnMaximize.Visibility = win.WinBtnMinimize.Visibility = Visibility.Collapsed;
     }
 
     private static void RestoreEverything(MainWindow win) {
         win.OutputBox.Visibility = win.TopText.Visibility = win.InputBox.Visibility =
-            win.InputBoxIndicator.Visibility = win.VisualMode.Visibility = win.MainMenuButton.Visibility =
-                win.WinBtnClose.Visibility =
+            win.InputBoxIndicator.Visibility = win.VisualModeB2.Visibility = win.VisualModeB3.Visibility =
+                win.MainMenuButton.Visibility = win.WinBtnClose.Visibility =
                     win.WinBtnMaximize.Visibility = win.WinBtnMinimize.Visibility = Visibility.Visible;
     }
 
@@ -388,10 +395,25 @@ public class MenuLoaders {
         await tcs.Task;
     }
 
-
     public static async Task Run_Exo1(MainWindow win) {
         await RunIntro(win, _title_exo1, _sub_exo1, _author, _exo1_title, _exo1_sub, _exo1_author);
         win.Exo1.Visibility = win.Exo1B.Visibility = Visibility.Visible;
+    }
+
+    public static async Task Run_Exo1B3(MainWindow win) {
+        await RunIntro(win, _title_exo1b3, _sub_exo1b3, _author, _exo1b3_title, _exo1b3_sub, _exo1_author);
+        win.OutputBox.Visibility = Visibility.Collapsed;
+        win.InputBox.Visibility = Visibility.Collapsed;
+        win.InputBoxIndicator.Visibility = Visibility.Collapsed;
+        win.Exo1B3.Visibility = Visibility.Visible;
+    }
+    
+    public static async Task Run_Exo2B3(MainWindow win) {
+        await RunIntro(win, _title_exo2b3, _sub_exo2b3, _author, _exo2b3_title, _exo2b3_sub, _exo1_author);
+        win.OutputBox.Visibility = Visibility.Collapsed;
+        win.InputBox.Visibility = Visibility.Collapsed;
+        win.InputBoxIndicator.Visibility = Visibility.Collapsed;
+        win.Exo2B3.Visibility = Visibility.Visible;
     }
 
     public static async Task Run_Exo2(MainWindow win) {
@@ -451,14 +473,13 @@ public class MenuLoaders {
     public static async Task Run_Main(MainWindow win) {
         await RunIntro(win, _title_main, _sub_main, _author2, _main_title, _main_sub, _main_author,
             IntroStyle.FadeOnly);
-        win.BabyMode.Visibility = ConsoleBehavior.Babymode ? Visibility.Visible : Visibility.Collapsed;
+        win.BabyMode.Visibility = ConsoleBehavior.Babymode == 1 ? Visibility.Visible : Visibility.Collapsed;
     }
 
     public static async Task RunHospital(MainWindow win) {
         Window hospital = new HospitalWindow();
         hospital.Show();
         win.Close();
-        
     }
 
     public static async Task RunFlashMaster(MainWindow win) {

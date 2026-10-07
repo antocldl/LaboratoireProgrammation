@@ -411,7 +411,8 @@ public class Exo4 {
         win.Exo3.Visibility = Visibility.Collapsed;
         win.Exo3B.Visibility = Visibility.Collapsed;
         win.Exo1B.Visibility = Visibility.Collapsed;
-        win.VisualMode.Visibility = Visibility.Collapsed;
+        win.VisualModeB2.Visibility = Visibility.Collapsed;
+        win.VisualModeB3.Visibility = Visibility.Collapsed;
         win.MainMenuButton.Visibility = Visibility.Collapsed;
         win.InputBoxIndicator.Visibility = Visibility.Collapsed;
 

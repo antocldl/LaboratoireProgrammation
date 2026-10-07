@@ -1,0 +1,634 @@
+<UserControl x:Class="LaboratoireProgrammation.Project.ViewModels.Exercices.Exo1B3"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:colorhelper="clr-namespace:LaboratoireProgrammation.Project.Helpers">
+
+    <UserControl.Resources>
+        <SolidColorBrush x:Key="TerminalYellowBrush" Color="{x:Static colorhelper:ColorHelper.FancyText}" />
+        <SolidColorBrush x:Key="DarkBgBrush" Color="#09090B" />
+        <SolidColorBrush x:Key="PanelBgBrush" Color="#111113" />
+        <SolidColorBrush x:Key="BorderDarkBrush" Color="#2A2A2E" />
+        <SolidColorBrush x:Key="AccentGreenBrush" Color="#3DD68C" />
+        <FontFamily x:Key="TerminalFont">Consolas</FontFamily>
+
+        <Style x:Key="ToolbarSeparatorStyle" TargetType="Separator">
+            <Setter Property="Background" Value="{StaticResource BorderDarkBrush}" />
+            <Setter Property="Width" Value="1" />
+            <Setter Property="Margin" Value="4,4" />
+        </Style>
+
+        <Style x:Key="TerminalCheckBox" TargetType="CheckBox">
+            <Setter Property="Foreground" Value="{StaticResource TerminalYellowBrush}" />
+            <Setter Property="FontFamily" Value="{StaticResource TerminalFont}" />
+            <Setter Property="FontSize" Value="13" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="Padding" Value="6,0,0,0" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="CheckBox">
+                        <BulletDecorator Background="Transparent">
+                            <BulletDecorator.Bullet>
+                                <Grid Height="18" Width="18">
+                                    <Border x:Name="Bd" 
+                                            Background="#111113" 
+                                            BorderBrush="{StaticResource BorderDarkBrush}" 
+                                            BorderThickness="1" />
+                                    <TextBlock x:Name="CheckMark" 
+                                               Text="✓" 
+                                               Foreground="{StaticResource TerminalYellowBrush}" 
+                                               FontFamily="{StaticResource TerminalFont}"
+                                               FontSize="12" 
+                                               FontWeight="Bold"
+                                               HorizontalAlignment="Center" 
+                                               VerticalAlignment="Center" 
+                                               Visibility="Collapsed" />
+                                </Grid>
+                            </BulletDecorator.Bullet>
+                            <ContentPresenter Margin="{TemplateBinding Padding}" 
+                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}" 
+                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" />
+                        </BulletDecorator>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Bd" Property="Background" Value="#1A1A1C" />
+                                <Setter TargetName="Bd" Property="BorderBrush" Value="{StaticResource TerminalYellowBrush}" />
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="CheckMark" Property="Visibility" Value="Visible" />
+                                <Setter TargetName="Bd" Property="Background" Value="#161619" />
+                                <Setter TargetName="Bd" Property="BorderBrush" Value="{StaticResource TerminalYellowBrush}" />
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Opacity" Value="0.5" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="TerminalTextBox" TargetType="TextBox">
+            <Setter Property="Background" Value="#111113" />
+            <Setter Property="Foreground" Value="{StaticResource TerminalYellowBrush}" />
+            <Setter Property="BorderBrush" Value="{StaticResource BorderDarkBrush}" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="CaretBrush" Value="{StaticResource TerminalYellowBrush}" />
+            <Setter Property="FontFamily" Value="{StaticResource TerminalFont}" />
+            <Setter Property="FontSize" Value="13" />
+            <Setter Property="Height" Value="26" />
+            <Setter Property="Padding" Value="6,4" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TextBox">
+                        <Border x:Name="Bd" 
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}">
+                            <ScrollViewer x:Name="PART_ContentHost" Focusable="False" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Bd" Property="Background" Value="#1A1A1C" />
+                                <Setter TargetName="Bd" Property="BorderBrush" Value="{StaticResource TerminalYellowBrush}" />
+                            </Trigger>
+                            <Trigger Property="IsFocused" Value="True">
+                                <Setter TargetName="Bd" Property="Background" Value="#161619" />
+                                <Setter TargetName="Bd" Property="BorderBrush" Value="{StaticResource TerminalYellowBrush}" />
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter TargetName="Bd" Property="Opacity" Value="0.5" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        
+        <Style x:Key="ChipDeleteBtn" TargetType="Button">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Foreground" Value="#888888" />
+            <Setter Property="FontFamily" Value="{StaticResource TerminalFont}" />
+            <Setter Property="FontSize" Value="11" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="Margin" Value="4,0,0,0" />
+            <Setter Property="Padding" Value="2,0" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Foreground" Value="#FF4242" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="TerminalPasswordBox" TargetType="PasswordBox">
+            <Setter Property="Background" Value="#111113" />
+            <Setter Property="Foreground" Value="{StaticResource TerminalYellowBrush}" />
+            <Setter Property="BorderBrush" Value="{StaticResource BorderDarkBrush}" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="CaretBrush" Value="{StaticResource TerminalYellowBrush}" />
+            <Setter Property="FontFamily" Value="{StaticResource TerminalFont}" />
+            <Setter Property="FontSize" Value="13" />
+            <Setter Property="Height" Value="26" />
+            <Setter Property="Padding" Value="6,4" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="PasswordBox">
+                        <Border x:Name="Bd" 
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}">
+                            <ScrollViewer x:Name="PART_ContentHost" Focusable="False" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Bd" Property="Background" Value="#1A1A1C" />
+                                <Setter TargetName="Bd" Property="BorderBrush" Value="{StaticResource TerminalYellowBrush}" />
+                            </Trigger>
+                            <Trigger Property="IsFocused" Value="True">
+                                <Setter TargetName="Bd" Property="Background" Value="#161619" />
+                                <Setter TargetName="Bd" Property="BorderBrush" Value="{StaticResource TerminalYellowBrush}" />
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter TargetName="Bd" Property="Opacity" Value="0.5" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="TerminalBtn" TargetType="Button">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Foreground" Value="{StaticResource TerminalYellowBrush}" />
+            <Setter Property="FontFamily" Value="{StaticResource TerminalFont}" />
+            <Setter Property="FontSize" Value="13" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="MinWidth" Value="28" />
+            <Setter Property="Height" Value="26" />
+            <Setter Property="Padding" Value="8,2" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="Bd" Background="{TemplateBinding Background}"
+                                Padding="{TemplateBinding Padding}"
+                                BorderBrush="{StaticResource BorderDarkBrush}" BorderThickness="1">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Bd" Property="Background" Value="#1A1A1C" />
+                                <Setter TargetName="Bd" Property="BorderBrush" Value="{StaticResource TerminalYellowBrush}" />
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="Bd" Property="Background" Value="{StaticResource TerminalYellowBrush}" />
+                                <Setter Property="Foreground" Value="Black" />
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Opacity" Value="0.4" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="TerminalAccentBtn" TargetType="Button">
+            <Setter Property="Background" Value="#112216" />
+            <Setter Property="Foreground" Value="{StaticResource AccentGreenBrush}" />
+            <Setter Property="FontFamily" Value="{StaticResource TerminalFont}" />
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="Height" Value="28" />
+            <Setter Property="Padding" Value="14,4" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="Bd" 
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{StaticResource AccentGreenBrush}" 
+                                BorderThickness="1"
+                                Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Bd" Property="Background" Value="#163820" />
+                                <Setter Property="Foreground" Value="#75FFB4" />
+                                <Setter TargetName="Bd" Property="BorderBrush" Value="#75FFB4" />
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="Bd" Property="Background" Value="{StaticResource AccentGreenBrush}" />
+                                <Setter Property="Foreground" Value="#09090B" />
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Opacity" Value="0.45" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="TerminalToggleBtn" TargetType="ToggleButton">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Foreground" Value="{StaticResource TerminalYellowBrush}" />
+            <Setter Property="FontFamily" Value="{StaticResource TerminalFont}" />
+            <Setter Property="FontSize" Value="13" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="MinWidth" Value="28" />
+            <Setter Property="Height" Value="26" />
+            <Setter Property="Padding" Value="6,2" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ToggleButton">
+                        <Border x:Name="Bd" Background="{TemplateBinding Background}"
+                                Padding="{TemplateBinding Padding}"
+                                BorderBrush="{StaticResource BorderDarkBrush}" BorderThickness="1">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Bd" Property="Background" Value="#1A1A1C" />
+                                <Setter TargetName="Bd" Property="BorderBrush" Value="{StaticResource TerminalYellowBrush}" />
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="Bd" Property="Background" Value="#2A2A0A" />
+                                <Setter TargetName="Bd" Property="BorderBrush" Value="{StaticResource TerminalYellowBrush}" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="TerminalCombo" TargetType="ComboBox">
+            <Setter Property="Background" Value="#111113" />
+            <Setter Property="Foreground" Value="{StaticResource TerminalYellowBrush}" />
+            <Setter Property="BorderBrush" Value="{StaticResource BorderDarkBrush}" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="FontFamily" Value="{StaticResource TerminalFont}" />
+            <Setter Property="FontSize" Value="13" />
+            <Setter Property="Height" Value="26" />
+            <Setter Property="Padding" Value="4,2" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ComboBox">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="20" />
+                            </Grid.ColumnDefinitions>
+                            <Border x:Name="MainBorder" Grid.ColumnSpan="2"
+                                    Background="{TemplateBinding Background}"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="{TemplateBinding BorderThickness}" />
+                            <ContentPresenter Grid.Column="0"
+                                              Content="{TemplateBinding SelectionBoxItem}"
+                                              ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
+                                              Margin="5,0,0,0"
+                                              VerticalAlignment="Center"
+                                              IsHitTestVisible="False"
+                                              TextBlock.Foreground="{StaticResource TerminalYellowBrush}"
+                                              TextBlock.FontFamily="{StaticResource TerminalFont}"
+                                              TextBlock.FontSize="13" />
+                            <TextBox x:Name="PART_EditableTextBox"
+                                     Grid.Column="0"
+                                     Background="Transparent"
+                                     Foreground="{StaticResource TerminalYellowBrush}"
+                                     BorderThickness="0"
+                                     CaretBrush="{StaticResource TerminalYellowBrush}"
+                                     FontFamily="{StaticResource TerminalFont}"
+                                     FontSize="13"
+                                     Margin="5,0,0,0"
+                                     VerticalAlignment="Center"
+                                     Focusable="True"
+                                     Visibility="Collapsed" />
+                            <TextBlock Grid.Column="1" Text="▼"
+                                       Foreground="{StaticResource TerminalYellowBrush}"
+                                       FontSize="9"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"
+                                       IsHitTestVisible="False" />
+                            <ToggleButton Grid.ColumnSpan="2"
+                                          IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                                          Background="Transparent"
+                                          BorderThickness="0"
+                                          Focusable="False"
+                                          Opacity="0" />
+                            <Popup x:Name="PART_Popup"
+                                   IsOpen="{TemplateBinding IsDropDownOpen}"
+                                   Placement="Bottom"
+                                   AllowsTransparency="True"
+                                   Focusable="False"
+                                   PopupAnimation="Fade">
+                                <Border Background="#111113"
+                                        BorderBrush="{StaticResource TerminalYellowBrush}"
+                                        BorderThickness="1"
+                                        MaxHeight="200"
+                                        MinWidth="{TemplateBinding ActualWidth}">
+                                    <ScrollViewer VerticalScrollBarVisibility="Auto">
+                                        <ItemsPresenter />
+                                    </ScrollViewer>
+                                </Border>
+                            </Popup>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="MainBorder" Property="BorderBrush" Value="{StaticResource TerminalYellowBrush}" />
+                            </Trigger>
+                            <Trigger Property="IsEditable" Value="True">
+                                <Setter TargetName="PART_EditableTextBox" Property="Visibility" Value="Visible" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="ItemContainerStyle">
+                <Setter.Value>
+                    <Style TargetType="ComboBoxItem">
+                        <Setter Property="Background" Value="Transparent" />
+                        <Setter Property="Foreground" Value="{StaticResource TerminalYellowBrush}" />
+                        <Setter Property="FontFamily" Value="{StaticResource TerminalFont}" />
+                        <Setter Property="FontSize" Value="13" />
+                        <Setter Property="Padding" Value="6,3" />
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="ComboBoxItem">
+                                    <Border x:Name="ItemBd" Background="{TemplateBinding Background}"
+                                            Padding="{TemplateBinding Padding}">
+                                        <ContentPresenter />
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsHighlighted" Value="True">
+                                            <Setter TargetName="ItemBd" Property="Background" Value="#1F1F10" />
+                                        </Trigger>
+                                        <Trigger Property="IsSelected" Value="True">
+                                            <Setter TargetName="ItemBd" Property="Background" Value="#2A2A0A" />
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="TerminalEditableCombo" TargetType="ComboBox" BasedOn="{StaticResource TerminalCombo}">
+            <Setter Property="IsEditable" Value="True" />
+        </Style>
+
+        <Style x:Key="TerminalLabel" TargetType="Label">
+            <Setter Property="FontFamily" Value="{StaticResource TerminalFont}" />
+            <Setter Property="Foreground" Value="{StaticResource TerminalYellowBrush}" />
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="Padding" Value="0,0,0,4" />
+        </Style>
+    </UserControl.Resources>
+
+    <UserControl.CommandBindings>
+        <CommandBinding Command="New" Executed="NewCmdExecuted" />
+        <CommandBinding Command="Open" Executed="OpenCmdExecuted" />
+        <CommandBinding Command="Save" Executed="SaveCmdExecuted" />
+    </UserControl.CommandBindings>
+
+    <Grid Background="{StaticResource DarkBgBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="0" Background="{StaticResource PanelBgBrush}" BorderBrush="{StaticResource BorderDarkBrush}" BorderThickness="0,0,0,1" Padding="8,5">
+            <DockPanel LastChildFill="False">
+                <StackPanel Orientation="Horizontal" DockPanel.Dock="Left">
+                    <Button Style="{StaticResource TerminalBtn}" Content="[ NEW ]" Click="NewFileClick" ToolTip="Nouveau (Ctrl+N)" />
+                    <Separator Style="{StaticResource ToolbarSeparatorStyle}" />
+                    <Button Style="{StaticResource TerminalBtn}" Content="[ OPEN ]" Click="OpenFileClick" ToolTip="Ouvrir (Ctrl+O)" />
+                    <Separator Style="{StaticResource ToolbarSeparatorStyle}" />
+                    <Button Style="{StaticResource TerminalBtn}" Content="[ SAVE ]" Click="SaveFileClick" ToolTip="Sauvegarder (Ctrl+S)" />
+                    <Separator Style="{StaticResource ToolbarSeparatorStyle}" />
+                    <Button Style="{StaticResource TerminalBtn}" Content="[ SAVE AS ]" Click="SaveAsFileClick" ToolTip="Sauvegarder sous..." />
+                    <Separator Style="{StaticResource ToolbarSeparatorStyle}" />
+                    <Button Style="{StaticResource TerminalBtn}" Content="[ PRINT ]" Click="PrintClick" ToolTip="Imprimer (Ctrl+P)" />
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" DockPanel.Dock="Right">
+                    <Button x:Name="BtnSendMail" Style="{StaticResource TerminalAccentBtn}" Content="▶ SEND" Click="SendMailClick" ToolTip="Envoyer le message SMTP" />
+                </StackPanel>
+            </DockPanel>
+        </Border>
+
+        <Border Grid.Row="1" Background="#0D0D0F" BorderBrush="{StaticResource BorderDarkBrush}" BorderThickness="0,0,0,1" Padding="6,4">
+            <WrapPanel Orientation="Horizontal">
+                <ComboBox x:Name="FontFamilyCombo" Style="{StaticResource TerminalCombo}" Width="160" SelectionChanged="FontFamilyCombo_SelectionChanged" ToolTip="Police" />
+                <Separator Style="{StaticResource ToolbarSeparatorStyle}" />
+
+                <Button Style="{StaticResource TerminalBtn}" Content="A▲" Click="IncreaseFontSizeClick" ToolTip="Augmenter la taille" />
+                <ComboBox x:Name="FontSizeCombo" Style="{StaticResource TerminalEditableCombo}" Width="55" SelectionChanged="FontSizeCombo_SelectionChanged" TextBoxBase.TextChanged="FontSizeCombo_TextChanged" ToolTip="Taille" />
+                <Button Style="{StaticResource TerminalBtn}" Content="A▼" Click="DecreaseFontSizeClick" ToolTip="Diminuer la taille" />
+                <Separator Style="{StaticResource ToolbarSeparatorStyle}" />
+
+                <ToggleButton x:Name="BtnBold" Style="{StaticResource TerminalToggleBtn}" Content="B" Click="BoldClick" ToolTip="Gras (Ctrl+B)" />
+                <ToggleButton x:Name="BtnItalic" Style="{StaticResource TerminalToggleBtn}" Content="I" FontStyle="Italic" Click="ItalicClick" ToolTip="Italique (Ctrl+I)" />
+                <ToggleButton x:Name="BtnUnderline" Style="{StaticResource TerminalToggleBtn}" Click="UnderlineClick" ToolTip="Souligné (Ctrl+U)">
+                    <TextBlock Text="U" TextDecorations="Underline" />
+                </ToggleButton>
+                <ToggleButton x:Name="BtnStrike" Style="{StaticResource TerminalToggleBtn}" Click="StrikeClick" ToolTip="Barré">
+                    <TextBlock Text="S" TextDecorations="Strikethrough" />
+                </ToggleButton>
+                <Separator Style="{StaticResource ToolbarSeparatorStyle}" />
+
+                <Button Style="{StaticResource TerminalBtn}" Content="x²" Click="SuperscriptClick" ToolTip="Exposant" />
+                <Button Style="{StaticResource TerminalBtn}" Content="x₂" Click="SubscriptClick" ToolTip="Indice" />
+                <Separator Style="{StaticResource ToolbarSeparatorStyle}" />
+
+                <Button x:Name="BtnFontColor" Style="{StaticResource TerminalBtn}" Click="FontColorClick" ToolTip="Couleur du texte" Width="36" Padding="2">
+                    <StackPanel>
+                        <TextBlock Text="A" FontWeight="Bold" HorizontalAlignment="Center" />
+                        <Border x:Name="FontColorIndicator" Height="4" Background="{StaticResource TerminalYellowBrush}" />
+                    </StackPanel>
+                </Button>
+                <Button x:Name="BtnHighlight" Style="{StaticResource TerminalBtn}" Click="HighlightClick" ToolTip="Surlignage" Width="36" Padding="2">
+                    <StackPanel>
+                        <TextBlock Text="H" FontWeight="Bold" HorizontalAlignment="Center" />
+                        <Border x:Name="HighlightIndicator" Height="4" Background="Yellow" />
+                    </StackPanel>
+                </Button>
+                <Separator Style="{StaticResource ToolbarSeparatorStyle}" />
+
+                <ToggleButton x:Name="BtnAlignLeft" Style="{StaticResource TerminalToggleBtn}" Content="≡◄" ToolTip="Aligner à gauche" Click="AlignLeftClick" />
+                <ToggleButton x:Name="BtnAlignCenter" Style="{StaticResource TerminalToggleBtn}" Content="≡|" ToolTip="Centrer" Click="AlignCenterClick" />
+                <ToggleButton x:Name="BtnAlignRight" Style="{StaticResource TerminalToggleBtn}" Content="►≡" ToolTip="Aligner à droite" Click="AlignRightClick" />
+                <ToggleButton x:Name="BtnAlignJustify" Style="{StaticResource TerminalToggleBtn}" Content="≡≡" ToolTip="Justifier" Click="AlignJustifyClick" />
+                <Separator Style="{StaticResource ToolbarSeparatorStyle}" />
+
+                <Button Style="{StaticResource TerminalBtn}" Content="• LIST" Click="BulletListClick" ToolTip="Liste à puces" />
+                <Button Style="{StaticResource TerminalBtn}" Content="1. LIST" Click="NumberListClick" ToolTip="Liste numérotée" />
+                <Separator Style="{StaticResource ToolbarSeparatorStyle}" />
+
+                <Button Style="{StaticResource TerminalBtn}" Content="──" Click="InsertSeparatorClick" ToolTip="Insérer un séparateur" />
+                <Button Style="{StaticResource TerminalBtn}" Content="⇕" Click="ToggleLineSpacingClick" ToolTip="Interligne double" />
+                <Button Style="{StaticResource TerminalBtn}" Content="☀" Click="ToggleThemeClick" ToolTip="Changer de thème" FontSize="14" />
+                <Separator Style="{StaticResource ToolbarSeparatorStyle}" />
+
+                <Button Style="{StaticResource TerminalBtn}" Content="↩" Click="UndoClick" ToolTip="Annuler (Ctrl+Z)" FontSize="14" />
+                <Button Style="{StaticResource TerminalBtn}" Content="↪" Click="RedoClick" ToolTip="Rétablir (Ctrl+Y)" FontSize="14" />
+                <Button Style="{StaticResource TerminalBtn}" Content="🔍" Click="FindReplaceClick" ToolTip="Rechercher / Remplacer" FontSize="14" />
+            </WrapPanel>
+        </Border>
+
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="330" MinWidth="260" MaxWidth="500" />
+                <ColumnDefinition Width="2" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <ScrollViewer Grid.Column="0" VerticalScrollBarVisibility="Auto" Background="{StaticResource PanelBgBrush}">
+                <StackPanel Margin="14,14">
+                    <TextBlock Text="// CONFIGURATION EXPÉDITEUR" Foreground="#606060" FontFamily="{StaticResource TerminalFont}" FontSize="11" Margin="0,0,0,10" />
+
+                    <Label Content="UTILISATEUR (FROM):" Style="{StaticResource TerminalLabel}" />
+                    <TextBox x:Name="TxtSender" Style="{StaticResource TerminalTextBox}" Margin="0,0,0,10" />
+
+                    <Label Content="MOT DE PASSE:" Style="{StaticResource TerminalLabel}" />
+                    <PasswordBox x:Name="TxtPassword" Style="{StaticResource TerminalPasswordBox}" Margin="0,0,0,16" />
+
+                    <TextBlock Text="// DESTINATAIRES &amp; OBJET" Foreground="#606060" FontFamily="{StaticResource TerminalFont}" FontSize="11" Margin="0,0,0,10" />
+
+                    <Label Content="DESTINATAIRES (TO):" Style="{StaticResource TerminalLabel}" />
+
+                    <Border Background="#111113" 
+                            BorderBrush="{StaticResource BorderDarkBrush}" 
+                            BorderThickness="1" 
+                            MinHeight="32" 
+                            Padding="4,2" 
+                            Margin="0,0,0,10" 
+                            Cursor="IBeam" 
+                            MouseDown="RecipientContainer_MouseDown">
+                        <WrapPanel x:Name="RecipientsHost" VerticalAlignment="Center">
+                            <ItemsControl x:Name="RecipientsList">
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <WrapPanel Orientation="Horizontal" />
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border Background="#1A1A1E" 
+                                                BorderBrush="{StaticResource TerminalYellowBrush}" 
+                                                BorderThickness="1" 
+                                                Margin="2" 
+                                                Padding="6,2">
+                                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                                <TextBlock Text="{Binding}" 
+                                                           Foreground="{StaticResource TerminalYellowBrush}" 
+                                                           FontFamily="{StaticResource TerminalFont}" 
+                                                           FontSize="12" 
+                                                           VerticalAlignment="Center" />
+                                                <Button Style="{StaticResource ChipDeleteBtn}" 
+                                                        Content="×" 
+                                                        Click="RemoveRecipientClick" 
+                                                        Tag="{Binding}" 
+                                                        ToolTip="Supprimer l'adresse" />
+                                            </StackPanel>
+                                        </Border>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+
+                            <TextBox x:Name="TxtRecipientInput" 
+                                     Background="Transparent" 
+                                     Foreground="{StaticResource TerminalYellowBrush}" 
+                                     BorderThickness="0" 
+                                     CaretBrush="{StaticResource TerminalYellowBrush}" 
+                                     FontFamily="{StaticResource TerminalFont}" 
+                                     FontSize="12" 
+                                     MinWidth="120"
+                                     VerticalAlignment="Center"
+                                     Margin="4,2"
+                                     PreviewKeyDown="TxtRecipientInput_PreviewKeyDown" 
+                                     TextChanged="TxtRecipientInput_TextChanged" />
+                        </WrapPanel>
+                    </Border>
+
+                    <Label Content="OBJET:" Style="{StaticResource TerminalLabel}" />
+                    <TextBox x:Name="TxtSubject" Style="{StaticResource TerminalTextBox}" Margin="0,0,0,16" />
+
+                    <TextBlock Text="// INFRASTRUCTURE RÉSEAU" Foreground="#606060" FontFamily="{StaticResource TerminalFont}" FontSize="11" Margin="0,0,0,10" />
+
+                    <Label Content="SERVEUR SMTP:" Style="{StaticResource TerminalLabel}" />
+                    <TextBox x:Name="TxtSmtpServer" Text="smtp.gmail.com" Style="{StaticResource TerminalTextBox}" Margin="0,0,0,10" />
+
+                    <Grid Margin="0,0,0,16">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="12" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0">
+                            <Label Content="PORT SMTP:" Style="{StaticResource TerminalLabel}" />
+                            <ComboBox x:Name="ComboSmtp" Style="{StaticResource TerminalCombo}" />
+                        </StackPanel>
+                        <StackPanel Grid.Column="2" VerticalAlignment="Bottom" Margin="0,0,0,4">
+                            <CheckBox x:Name="ChkSsl" Content="SSL / TLS" IsChecked="True" Style="{StaticResource TerminalCheckBox}" />
+                        </StackPanel>
+                    </Grid>
+                </StackPanel>
+            </ScrollViewer>
+
+            <GridSplitter Grid.Column="1" HorizontalAlignment="Stretch" Background="{StaticResource BorderDarkBrush}" />
+
+            <Border Grid.Column="2" Background="#0A0A0C">
+                <RichTextBox x:Name="Editor"
+                             Background="Transparent"
+                             Foreground="{StaticResource TerminalYellowBrush}"
+                             BorderThickness="0"
+                             FontFamily="Consolas"
+                             FontSize="15"
+                             CaretBrush="{StaticResource TerminalYellowBrush}"
+                             Padding="20,16"
+                             AcceptsTab="True"
+                             SpellCheck.IsEnabled="False"
+                             SelectionBrush="{StaticResource TerminalYellowBrush}"
+                             SelectionOpacity="0.3"
+                             TextChanged="Editor_TextChanged"
+                             SelectionChanged="Editor_SelectionChanged"
+                             VerticalScrollBarVisibility="Auto"
+                             HorizontalScrollBarVisibility="Auto">
+                    <RichTextBox.Resources>
+                        <Style TargetType="Paragraph">
+                            <Setter Property="Margin" Value="0" />
+                            <Setter Property="LineHeight" Value="Auto" />
+                        </Style>
+                    </RichTextBox.Resources>
+                </RichTextBox>
+            </Border>
+        </Grid>
+
+        <Border Grid.Row="3" Background="{StaticResource PanelBgBrush}" BorderBrush="{StaticResource BorderDarkBrush}" BorderThickness="0,1,0,0" Padding="8,3">
+            <Grid>
+                <TextBlock x:Name="StatusText" Text="[ READY ] : Aucun fichier ouvert" Foreground="#606060" FontFamily="Consolas" FontSize="12" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                <TextBlock x:Name="WordCountText" Text="Mots: 0  |  Caractères: 0" Foreground="#606060" FontFamily="Consolas" FontSize="12" HorizontalAlignment="Right" VerticalAlignment="Center" />
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>

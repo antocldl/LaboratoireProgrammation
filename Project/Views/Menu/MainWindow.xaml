@@ -11,7 +11,6 @@
         xmlns:overseerWars="clr-namespace:LaboratoireProgrammation.Project.ViewModels.Laboratoires.OverseerWars"
         xmlns:microController="clr-namespace:LaboratoireProgrammation.Project.ViewModels.Laboratoires.MicroController"
         xmlns:miscellaneous="clr-namespace:LaboratoireProgrammation.Project.Views.Miscellaneous"
-        xmlns:viewM="clr-namespace:LaboratoireProgrammation.Project.ViewModels"
         Title="{x:Static viewModels1:MainWindowConfiguration.Title}"
         Height="{x:Static viewModels1:MainWindowConfiguration.Height}"
         Width="{x:Static viewModels1:MainWindowConfiguration.Width}"
@@ -29,18 +28,16 @@
     </WindowChrome.WindowChrome>
 
     <Window.Resources>
-
         <SolidColorBrush x:Key="TerminalYellowBrush" Color="{x:Static colorhelper:ColorHelper.FancyText}" />
         <SolidColorBrush x:Key="TerminalOrangeBrush" Color="{x:Static colorhelper:ColorHelper.HomeText}" />
         <SolidColorBrush x:Key="TerminalGreenBrush" Color="{x:Static colorhelper:ColorHelper.VisualText}" />
+        <SolidColorBrush x:Key="TerminalCyanBrush" Color="#00E5FF" />
         <Color x:Key="TerminalBlack">#000000</Color>
         <SolidColorBrush x:Key="TerminalBlackBrush" Color="{StaticResource TerminalBlack}" />
-
 
         <FontFamily x:Key="TerminalFont">Consolas</FontFamily>
         <sys:Double xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="HeaderFontSize">16</sys:Double>
         <sys:Double xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="BodyFontSize">18</sys:Double>
-
 
         <Style x:Key="RobcoBtn" TargetType="Button">
             <Setter Property="Background" Value="Transparent" />
@@ -56,10 +53,8 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border Background="{TemplateBinding Background}"
-                                Padding="{TemplateBinding Padding}">
-                            <ContentPresenter HorizontalAlignment="Left"
-                                              VerticalAlignment="Center" />
+                        <Border Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center" />
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
@@ -71,7 +66,6 @@
                 </Setter.Value>
             </Setter>
         </Style>
-
 
         <Style x:Key="RobcoBtnHome" TargetType="Button">
             <Setter Property="Background" Value="Transparent" />
@@ -86,10 +80,8 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border Background="{TemplateBinding Background}"
-                                Padding="{TemplateBinding Padding}">
-                            <ContentPresenter HorizontalAlignment="Center"
-                                              VerticalAlignment="Center" />
+                        <Border Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
@@ -101,7 +93,6 @@
                 </Setter.Value>
             </Setter>
         </Style>
-
 
         <Style x:Key="RobcoBtnVisualMode" TargetType="Button">
             <Setter Property="Background" Value="Transparent" />
@@ -116,10 +107,8 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border Background="{TemplateBinding Background}"
-                                Padding="{TemplateBinding Padding}">
-                            <ContentPresenter HorizontalAlignment="Center"
-                                              VerticalAlignment="Center" />
+                        <Border Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
@@ -132,13 +121,11 @@
             </Setter>
         </Style>
 
-
         <Style x:Key="TerminalText" TargetType="TextBlock">
             <Setter Property="FontFamily" Value="{StaticResource TerminalFont}" />
             <Setter Property="Foreground" Value="{StaticResource TerminalYellowBrush}" />
             <Setter Property="FontSize" Value="{StaticResource BodyFontSize}" />
         </Style>
-
 
         <Style x:Key="HeaderText" TargetType="TextBlock" BasedOn="{StaticResource TerminalText}">
             <Setter Property="FontSize" Value="{StaticResource HeaderFontSize}" />
@@ -146,14 +133,12 @@
             <Setter Property="Opacity" Value="0.8" />
         </Style>
 
-
         <Style TargetType="{x:Type Paragraph}">
             <Setter Property="Margin" Value="0" />
         </Style>
     </Window.Resources>
 
     <Grid x:Name="MainGrid">
-
         <overseerWars:OverseerWarsUi x:Name="OverseerWarsMenu" Panel.ZIndex="101"
                                      Visibility="Hidden"
                                      HorizontalAlignment="Stretch"
@@ -162,24 +147,26 @@
         <Rectangle x:Name="BackgroundRectangle" Fill="Black" Panel.ZIndex="100" Visibility="Collapsed" />
 
         <DockPanel LastChildFill="True" Margin="20">
-
             <Grid DockPanel.Dock="Top" Height="40">
                 <TextBlock x:Name="TopText" Text="@anto.cldl - Terminal.UI | v1.0"
                            Style="{StaticResource HeaderText}"
                            VerticalAlignment="Center"
                            HorizontalAlignment="Left" />
 
-
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-
                     <Button Style="{StaticResource RobcoBtnHome}" Margin="0,0,20,0"
                             Content="Menu Principal [ 🏠 ]"
                             Click="BackToMenu"
                             WindowChrome.IsHitTestVisibleInChrome="True" x:Name="MainMenuButton" />
 
-                    <Button Style="{StaticResource RobcoBtnVisualMode}" Margin="0,0,100,0"
-                            Content="Mode Visuel [ ✔ ]" x:Name="VisualMode"
-                            Click="BabyModeSwitch"
+                    <Button Style="{StaticResource RobcoBtnVisualMode}" Margin="0,0,10,0"
+                            Content="Menu Bloc.2 [ ❌ ]" x:Name="VisualModeB2"
+                            Click="B2MenuSwitch"
+                            WindowChrome.IsHitTestVisibleInChrome="True" />
+
+                    <Button Style="{StaticResource RobcoBtnVisualMode}" Margin="0,0,60,0"
+                            Content="Menu Bloc.3 [ ❌ ]" x:Name="VisualModeB3"
+                            Click="B3MenuSwitch"
                             WindowChrome.IsHitTestVisibleInChrome="True" />
 
                     <Button Style="{StaticResource RobcoBtn}"
@@ -209,8 +196,7 @@
                        HorizontalAlignment="Right" />
 
                 <TextBlock x:Name="Credits" />
-                <ScrollViewer Grid.Row="0" VerticalScrollBarVisibility="Hidden" x:Name="TerminalScroller"
-                              Margin="-10">
+                <ScrollViewer Grid.Row="0" VerticalScrollBarVisibility="Hidden" x:Name="TerminalScroller" Margin="-10">
                     <StackPanel x:Name="TerminalOutputPanel" Margin="10" />
                 </ScrollViewer>
 
@@ -222,83 +208,82 @@
                                  BorderThickness="0"
                                  Foreground="{StaticResource TerminalYellowBrush}"
                                  FontFamily="{StaticResource TerminalFont}"
-                                 FontSize="{StaticResource BodyFontSize}" IsHitTestVisible="False" />
+                                 FontSize="{StaticResource BodyFontSize}" 
+                                 IsHitTestVisible="False" />
                 </ScrollViewer>
 
                 <exercices:Exo1 Visibility="Collapsed" Panel.ZIndex="0" Grid.Row="0" HorizontalAlignment="Center"
                                 VerticalAlignment="Top" Margin="0,100,0,0" x:Name="Exo1" />
-
                 <exercices:Exo1B Visibility="Collapsed" Panel.ZIndex="0" Grid.Row="0" HorizontalAlignment="Center"
                                  VerticalAlignment="Top" Margin="0,400,0,0" x:Name="Exo1B" />
 
-                <laboratoire1:ConnectControl Visibility="Collapsed" Panel.ZIndex="0" Grid.Row="0"
-                                             HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0"
-                                             x:Name="Labo1B" />
+                
+                
+                <exercices:Exo1B3 Visibility="Collapsed" Panel.ZIndex="0" Grid.Row="0" HorizontalAlignment="Stretch"
+                                  VerticalAlignment="Stretch" x:Name="Exo1B3" />
+                
+                <exercices:Exo2B3 Visibility="Collapsed" Panel.ZIndex="0" Grid.Row="0" HorizontalAlignment="Stretch"
+                                  VerticalAlignment="Stretch" x:Name="Exo2B3" />
 
+                
+                
+                <laboratoire1:ConnectControl Visibility="Collapsed" Panel.ZIndex="0" Grid.Row="0"
+                                             HorizontalAlignment="Center" VerticalAlignment="Center"
+                                             x:Name="Labo1B" />
                 <laboratoire1:LaboElectroniqueESP8266 Visibility="Collapsed" Panel.ZIndex="0" Grid.Row="0"
                                                       HorizontalAlignment="Center" VerticalAlignment="Center"
-                                                      Margin="0,0,0,0"
                                                       x:Name="ESP8266" />
-
 
                 <exercices:Exo2 Visibility="Collapsed" Panel.ZIndex="0" Grid.Row="0" HorizontalAlignment="Center"
                                 VerticalAlignment="Top" Margin="0,100,0,0" x:Name="Exo2" />
 
                 <viewModels1:BabyMode Visibility="Collapsed" Panel.ZIndex="0" Grid.Row="0" HorizontalAlignment="Center"
-                                      VerticalAlignment="Center" Margin="0,0,0,0" x:Name="BabyMode" />
+                                      VerticalAlignment="Center" x:Name="BabyMode" />
+                <viewModels1:BabyModeB3 Visibility="Collapsed" Panel.ZIndex="0" Grid.Row="0" HorizontalAlignment="Center"
+                                        VerticalAlignment="Center" x:Name="BabyModeB3" />
 
                 <memfy1:MemfyAgreement Visibility="Collapsed" Panel.ZIndex="0" Grid.Row="0"
-                                       HorizontalAlignment="Center"
-                                       VerticalAlignment="Center" Margin="0,0,0,100" x:Name="MemfyAgreement" />
+                                       HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,100" 
+                                       x:Name="MemfyAgreement" />
 
                 <exercices:Exo5 Visibility="Collapsed" Panel.ZIndex="0" Grid.Row="0"
-                                HorizontalAlignment="Stretch"
-                                VerticalAlignment="Stretch" Margin="0,0,0,-40" x:Name="Exo5" />
-
+                                HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,0,-40" 
+                                x:Name="Exo5" />
                 <exercices:Exo6 Visibility="Collapsed" Panel.ZIndex="0" Grid.Row="0"
-                                HorizontalAlignment="Stretch"
-                                VerticalAlignment="Stretch" Margin="0,0,0,-40" x:Name="Exo6" />
-
+                                HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,0,-40" 
+                                x:Name="Exo6" />
                 <exercices1:Exo7 Visibility="Collapsed" Panel.ZIndex="0" Grid.Row="0"
-                                 HorizontalAlignment="Stretch"
-                                 VerticalAlignment="Stretch" Margin="0,0,0,-40" x:Name="Exo7" />
-
+                                 HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,0,-40" 
+                                 x:Name="Exo7" />
                 <exercices1:Exo___8 Visibility="Collapsed" Panel.ZIndex="0" Grid.Row="0"
-                                    HorizontalAlignment="Stretch"
-                                    VerticalAlignment="Stretch" Margin="0,0,0,-40" x:Name="Exo8" />
-
+                                    HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,0,-40" 
+                                    x:Name="Exo8" />
                 <exercices1:Exo9 Visibility="Collapsed" Panel.ZIndex="0" Grid.Row="0"
-                                 HorizontalAlignment="Stretch"
-                                 VerticalAlignment="Stretch" Margin="0,0,0,-40" x:Name="Exo9" />
-
+                                 HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,0,-40" 
+                                 x:Name="Exo9" />
                 <exercices1:Exo___10 Visibility="Collapsed" Panel.ZIndex="0" Grid.Row="0"
-                                     HorizontalAlignment="Stretch"
-                                     VerticalAlignment="Stretch" Margin="0,0,0,-40" x:Name="Exo10" />
+                                     HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,0,-40" 
+                                     x:Name="Exo10" />
 
                 <exercices:Exo3 Visibility="Collapsed" Panel.ZIndex="0" Grid.Row="0" HorizontalAlignment="Left"
                                 VerticalAlignment="Top" Margin="0,50,0,0" x:Name="Exo3" />
                 <exercices:Exo3B Visibility="Collapsed" Panel.ZIndex="0" Grid.Row="0" HorizontalAlignment="Center"
-                                 VerticalAlignment="Center" Margin="0,0,0,0" x:Name="Exo3B" />
-
+                                 VerticalAlignment="Center" x:Name="Exo3B" />
 
                 <microController:FlashMaster Visibility="Collapsed" Panel.ZIndex="0" Grid.Row="0"
-                                             HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0"
+                                             HorizontalAlignment="Center" VerticalAlignment="Center"
                                              x:Name="FlashMaster" />
-                
                 <miscellaneous:AssemblyMessageManager Visibility="Collapsed" Panel.ZIndex="0" Grid.Row="0"
-                                             HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0"
-                                             x:Name="Uplink" />
+                                                      HorizontalAlignment="Center" VerticalAlignment="Center"
+                                                      x:Name="Uplink" />
 
                 <Grid>
-                    <Image Source="../../../Assets/images/bethesdaWhite.png" x:Name="BethesdaLogo"
-                           Visibility="Collapsed">
+                    <Image Source="../../../Assets/images/bethesdaWhite.png" x:Name="BethesdaLogo" Visibility="Collapsed">
                         <Image.Effect>
                             <DropShadowEffect ShadowDepth="10" Color="White" Opacity="0.1" BlurRadius="10" />
                         </Image.Effect>
                     </Image>
                 </Grid>
-
-
 
                 <Grid Grid.Row="1" Margin="0,5,0,0">
                     <Grid.ColumnDefinitions>

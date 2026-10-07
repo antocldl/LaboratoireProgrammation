@@ -1,8 +1,9 @@
+using System;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using HandyControl.Tools.Extension;
 using LaboratoireProgrammation.Project.Helpers;
 using LaboratoireProgrammation.Project.Models.Menu;
 using LaboratoireProgrammation.Project.ModernHospital;
@@ -12,16 +13,22 @@ using LaboratoireProgrammation.Project.Services;
 
 namespace LaboratoireProgrammation.Project.ViewModels.Menu;
 
+public enum VisualMenuState {
+    None,
+    Bloc2,
+    Bloc3
+}
+
 public partial class MainWindow : Window {
     private readonly ConsoleBehavior _behavior = new();
     private readonly Color _terminalGreen = Color.FromRgb(51, 255, 51);
+    private VisualMenuState _currentVisualMenu = VisualMenuState.None;
     public bool IsAnimating;
 
     public MainWindow() {
         InitializeComponent();
 
         SetupModelEvents();
-
         TerminalDisplay.Init(OutputBox, InputBox);
         SizeHelper.setFullscreen(this);
 
@@ -34,53 +41,107 @@ public partial class MainWindow : Window {
         _behavior.OnClearInputRequest = () => InputBox.Clear();
     }
 
+    private IEnumerable<UIElement> GetAllExerciseViews() {
+        yield return Exo1;
+        yield return Exo1B;
+        yield return Exo1B3;
+        yield return Exo2;
+        yield return Exo3;
+        yield return Exo3B;
+        yield return Exo5;
+        yield return Exo6;
+        yield return Exo7;
+        yield return Exo8;
+        yield return Exo9;
+        yield return Exo10;
+        yield return Labo1B;
+        yield return ESP8266;
+        yield return FlashMaster;
+        yield return MemfyAgreement;
+        yield return OverseerWarsMenu;
+        yield return BackgroundRectangle;
+        yield return BethesdaLogo;
+        yield return Uplink;
+    }
+
+    private void HideAllExerciseViews() {
+        foreach (var view in GetAllExerciseViews()) {
+            if (view != null) view.Visibility = Visibility.Collapsed;
+        }
+    }
+
     public void MainInit() {
-        OutputBox.Visibility = Visibility.Visible;
-        InputBox.Visibility = Visibility.Visible;
+        HideAllExerciseViews();
 
-        Exo1.Visibility = Visibility.Collapsed;
-        Exo1B.Visibility = Visibility.Collapsed;
-        Exo2.Visibility = Visibility.Collapsed;
-        Exo3.Visibility = Visibility.Collapsed;
-        Exo3B.Visibility = Visibility.Collapsed;
-        Exo5.Visibility = Visibility.Collapsed;
-        Exo6.Visibility = Visibility.Collapsed;
-        Exo7.Visibility = Visibility.Collapsed;
-        Exo8.Visibility = Visibility.Collapsed;
-        Exo9.Visibility = Visibility.Collapsed;
-        Exo10.Visibility = Visibility.Collapsed;
-        Labo1B.Visibility = Visibility.Collapsed;
-        ESP8266.Visibility = Visibility.Collapsed;
-        FlashMaster.Visibility = Visibility.Collapsed;
-        MemfyAgreement.Visibility = Visibility.Collapsed;
-        OverseerWarsMenu.Visibility = Visibility.Collapsed;
-        BackgroundRectangle.Visibility = Visibility.Collapsed;
-        BethesdaLogo.Visibility = Visibility.Collapsed;
-        BabyMode.Visibility = Visibility.Collapsed;
+        _currentVisualMenu = VisualMenuState.None;
+        UpdateVisualMenusUi();
 
-        UpdateBabyModeUi();
-
-        Loaded += (s, e) => InputBox.Focus();
         OutputBox.Document.Blocks.Clear();
         TerminalOutputPanel.Children.Clear();
         TerminalDisplay.SeparationLine();
-        
     }
 
-    private void UpdateBabyModeUi() {
-        if (!_behavior.GetBabyMode()) {
-            VisualMode.Content = "Mode Visuel [ ❌ ]";
-            OutputBox.Visibility = Visibility.Visible;
-            InputBox.Visibility = Visibility.Visible;
-            BabyMode.Visibility = Visibility.Collapsed;
+    public void OnExerciseOpened() {
+        _currentVisualMenu = VisualMenuState.None;
+        if (VisualModeB2 != null) VisualModeB2.Content = "Menu Bloc.2 [ ❌ ]";
+        if (VisualModeB3 != null) VisualModeB3.Content = "Menu Bloc.3 [ ❌ ]";
+        if (BabyMode != null) BabyMode.Visibility = Visibility.Collapsed;
+        if (BabyModeB3 != null) BabyModeB3.Visibility = Visibility.Collapsed;
+    }
+
+    public void SetVisualMenu(VisualMenuState targetState) {
+        if (IsAnimating) return;
+
+        _currentVisualMenu = (_currentVisualMenu == targetState) ? VisualMenuState.None : targetState;
+        UpdateVisualMenusUi();
+    }
+
+    private void UpdateVisualMenusUi() {
+        HideAllExerciseViews();
+
+        VisualModeB2.Content = _currentVisualMenu == VisualMenuState.Bloc2 ? "Menu Bloc.2 [ ✔ ]" : "Menu Bloc.2 [ ❌ ]";
+        VisualModeB3.Content = _currentVisualMenu == VisualMenuState.Bloc3 ? "Menu Bloc.3 [ ✔ ]" : "Menu Bloc.3 [ ❌ ]";
+
+        switch (_currentVisualMenu) {
+            case VisualMenuState.Bloc2:
+                OutputBox.Visibility = Visibility.Collapsed;
+                InputBox.Visibility = Visibility.Collapsed;
+                InputBoxIndicator.Visibility = Visibility.Collapsed;
+                BabyMode.Visibility = Visibility.Visible;
+                BabyModeB3.Visibility = Visibility.Collapsed;
+                break;
+
+            case VisualMenuState.Bloc3:
+                OutputBox.Visibility = Visibility.Collapsed;
+                InputBox.Visibility = Visibility.Collapsed;
+                InputBoxIndicator.Visibility = Visibility.Collapsed;
+                BabyMode.Visibility = Visibility.Collapsed;
+                BabyModeB3.Visibility = Visibility.Visible;
+                break;
+
+            case VisualMenuState.None:
+            default:
+                BabyMode.Visibility = Visibility.Collapsed;
+                BabyModeB3.Visibility = Visibility.Collapsed;
+                OutputBox.Visibility = Visibility.Visible;
+                InputBox.Visibility = Visibility.Visible;
+                InputBoxIndicator.Visibility = Visibility.Visible;
+                TerminalDisplay.Init(OutputBox, InputBox);
+                InputBox.Focus();
+                break;
         }
-        else {
-            VisualMode.Content = "Mode Visuel [ ✔ ]";
-            OutputBox.Visibility = Visibility.Collapsed;
-            InputBox.Visibility = Visibility.Collapsed;
-            if (!IsAnimating) BabyMode.Visibility = Visibility.Visible;
-            TerminalDisplay.Init(OutputBox, InputBox);
-        }
+    }
+
+    private void B2MenuSwitch(object sender, RoutedEventArgs e) {
+        SetVisualMenu(VisualMenuState.Bloc2);
+    }
+
+    private void B3MenuSwitch(object sender, RoutedEventArgs e) {
+        SetVisualMenu(VisualMenuState.Bloc3);
+    }
+
+    public void BackToMenu(object sender, RoutedEventArgs e) {
+        MainInit();
     }
 
     private void InputBox_PreviewKeyDown(object sender, KeyEventArgs e) {
@@ -104,7 +165,7 @@ public partial class MainWindow : Window {
                 e.Handled = true;
                 break;
             case Key.Enter:
-                _behavior.SetBabyMode(false);
+                ConsoleBehavior.IsAdjustingSize = false;
                 TerminalDisplay.AppendOutput($"[CONFIG] FONT SIZE SAVED: {OutputBox.FontSize}");
                 InputBox.Clear();
                 e.Handled = true;
@@ -137,8 +198,6 @@ public partial class MainWindow : Window {
         }
     }
 
-    // --- UI Rendering Helpers ---
-
     public void BlankSpace() {
         OutputBox.Document.Blocks.Add(new Paragraph(new Run("")));
         OutputBox.ScrollToEnd();
@@ -150,38 +209,15 @@ public partial class MainWindow : Window {
         InputBox.FontSize = newSize;
     }
 
-    // --- Window Control ---
-
-    private void MinimizeProgram(object sender, RoutedEventArgs e) {
-        WindowState = WindowState.Minimized;
-    }
-
-    private void MaximizeProgram(object sender, RoutedEventArgs e) {
-        WindowState = WindowState == WindowState.Maximized ? WindowState.Normal : WindowState.Maximized;
-    }
-
-    private void CloseProgram(object sender, RoutedEventArgs e) {
-        Close();
-    }
+    private void MinimizeProgram(object sender, RoutedEventArgs e) => WindowState = WindowState.Minimized;
+    private void MaximizeProgram(object sender, RoutedEventArgs e) => WindowState = WindowState == WindowState.Maximized ? WindowState.Normal : WindowState.Maximized;
+    private void CloseProgram(object sender, RoutedEventArgs e) => Close();
 
     private async void AnimateLoader() {
         IsAnimating = true;
-
         await MenuLoaders.Run_Main(this);
-
         MainInit();
         BlankSpace();
-
         IsAnimating = false;
-    }
-
-    public void BackToMenu(object sender, RoutedEventArgs e) {
-        MainInit();
-    }
-
-    private void BabyModeSwitch(object sender, RoutedEventArgs e) {
-        if (IsAnimating) return;
-        _behavior.ToggleBabyMode();
-        UpdateBabyModeUi();
     }
 }
