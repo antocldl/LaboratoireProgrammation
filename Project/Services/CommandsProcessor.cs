@@ -34,6 +34,7 @@ public class CommandsProcessor {
                 TerminalDisplay.AppendOutput("  exo10   - Launch Exo (10)");
                 TerminalDisplay.AppendOutput("  lab1    - Launch Lab (1)");
                 TerminalDisplay.AppendOutput("  ow      - Launch Overseer Wars");
+                TerminalDisplay.AppendOutput("  owmp    - Launch Overseer Wars Multiplayer");
                 TerminalDisplay.AppendOutput("  flash   - Launch FlashMaster");
                 TerminalDisplay.AppendOutput("  uplink  - Launch Uplink");
                 TerminalDisplay.AppendOutput("  hospi   - Launch Hospital");
@@ -196,6 +197,13 @@ public class CommandsProcessor {
 
             case "ow":
                 OverseerWarInit.Introduce(window);
+                break;
+
+            case "owmp":
+            case "ow-mp":
+            case "overseerwarsmp":
+                var mpMenu = new LaboratoireProgrammation.Project.ModernOverseerWarsMP.Views.OverseerWarsMpMenuWindow();
+                mpMenu.Show();
                 break;
 
             case "te":

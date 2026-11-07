@@ -22,7 +22,7 @@ using LaboratoireProgrammation.Project.ModernOverseerWars.Views.Controls;
 
 namespace LaboratoireProgrammation.Project.ModernOverseerWars.Views;
 
-public partial class OverseerWarsWindow : Window {
+public partial class OverseerWarsWindow : Window, IOverseerGameWindow {
 
     private static ControlCard? _heldCard;
     public static ControlCard? heldCard {
@@ -44,6 +44,29 @@ public partial class OverseerWarsWindow : Window {
     private GameState       _state   => _game.State;
     public GameState State => _state;
     public Vault ActiveVault => _state.ActiveVault;
+    public bool CanInteract => true;
+
+    public void RequestEquip(Dweller dw, ICard item, bool isWeapon) {
+        if (isWeapon && item is IWeapon w) {
+            dw.EquippedWeapon = w;
+            State.AddLog($"{dw.Name} equipped {w.Name}");
+        } else if (!isWeapon && item is IOutfit o) {
+            dw.EquippedOutfit = o;
+            State.AddLog($"{dw.Name} equipped {o.Name}");
+        }
+        RefreshAll();
+    }
+
+    public void RequestUnequip(Dweller dw, bool isWeapon) {
+        if (isWeapon && dw.EquippedWeapon != null) {
+            State.AddLog($"{dw.Name} unequipped {dw.EquippedWeapon.Name}");
+            dw.EquippedWeapon = null;
+        } else if (!isWeapon && dw.EquippedOutfit != null) {
+            State.AddLog($"{dw.Name} unequipped {dw.EquippedOutfit.Name}");
+            dw.EquippedOutfit = null;
+        }
+        RefreshAll();
+    }
     private TurnService     _turns   => _game.Turns;
     private ResourceService _res     => _game.Resources;
     private CombatService   _combat  => _game.Combat;

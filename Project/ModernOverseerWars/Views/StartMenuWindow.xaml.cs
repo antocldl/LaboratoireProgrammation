@@ -109,6 +109,14 @@ public partial class StartMenuWindow : Window {
             DialogResult = true;
         }
     }
+
+    private void OnMultiplayer(object sender, RoutedEventArgs e) {
+        var mpMenu = new LaboratoireProgrammation.Project.ModernOverseerWarsMP.Views.OverseerWarsMpMenuWindow();
+        mpMenu.Owner = this;
+        Hide();
+        mpMenu.ShowDialog();
+        Show();
+    }
 }
 
 public class ThemeViewModel {

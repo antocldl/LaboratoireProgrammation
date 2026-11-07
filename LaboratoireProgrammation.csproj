@@ -9,259 +9,260 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <None Remove="Assets\Steam.png"/>
-        <None Remove="Assets\Games\Game (1).jpg"/>
-        <None Remove="Assets\Games\Game (1).png"/>
-        <None Remove="Assets\Games\Game (1).webp"/>
-        <None Remove="Assets\Games\Game (2).jpg"/>
-        <None Remove="Assets\Games\Game (2).png"/>
-        <None Remove="Assets\Games\Game (2).webp"/>
-        <None Remove="Assets\Games\Game (3).jpg"/>
-        <None Remove="Assets\Games\Game (3).png"/>
-        <None Remove="Assets\Games\Game (4).jpg"/>
-        <None Remove="Assets\Games\Game (4).png"/>
-        <None Remove="Assets\Games\Game (5).jpg"/>
-        <None Remove="Assets\Games\Game (5).png"/>
-        <None Remove="Assets\Games\Game (6).jpg"/>
-        <None Remove="Assets\Games\Game (6).png"/>
-        <None Remove="Assets\Games\Game (7).jpg"/>
-        <None Remove="Assets\Games\Game (7).png"/>
-        <None Remove="Assets\Games\Game (8).png"/>
-        <None Remove="Assets\Games\Game (9).png"/>
-        <None Remove="Assets\Games\Game (10).png"/>
-        <None Remove="Assets\Games\Game (11).png"/>
-        <None Remove="Assets\Games\Game (12).png"/>
-        <None Remove="Assets\Games\Game (13).png"/>
-        <None Remove="Assets\Games\Game (14).png"/>
-        <None Remove="Assets\Games\Game (15).png"/>
-        <None Remove="Assets\Games\Game (16).png"/>
-        <None Remove="Assets\Games\Game (17).png"/>
-        <None Remove="Assets\Games\Game (18).png"/>
-        <None Remove="Assets\Games\Game (19).png"/>
-        <None Remove="Assets\Games\Game (20).png"/>
-        <None Remove="Assets\Games\Game (21).png"/>
-        <None Remove="Assets\Games\Game (22).png"/>
-        <None Remove="Assets\Games\Game (23).png"/>
-        <None Remove="Assets\Games\Game (24).png"/>
-        <None Remove="Assets\Games\Game (25).png"/>
-        <None Remove="Assets\Games\Game (26).png"/>
-        <None Remove="Assets\Games\Game (27).png"/>
-        <None Remove="Assets\Games\Game (28).png"/>
-        <None Remove="Assets\Games\Game (29).png"/>
-        <None Remove="Assets\Games\Game (30).png"/>
-        <None Remove="Assets\Games\Game (31).png"/>
-        <None Remove="Assets\Games\Game (32).png"/>
-        <None Remove="Assets\Games\Game (33).png"/>
-        <None Remove="Assets\Games\Game (34).png"/>
-        <None Remove="Assets\Games\Game (35).png"/>
-        <None Remove="Assets\Games\Game (36).png"/>
-        <None Remove="Assets\Games\Game (37).png"/>
-        <None Remove="Assets\Games\Game (38).png"/>
-        <None Remove="Assets\Games\Game (39).png"/>
-        <None Remove="Assets\Games\Game (40).png"/>
-        <None Remove="Assets\Games\Game (41).png"/>
-        <None Remove="Assets\Games\Game (42).png"/>
-        <None Remove="Assets\Games\Game (43).png"/>
-        <None Remove="Assets\Games\Game (44).png"/>
-        <None Remove="Assets\Games\Game (45).png"/>
-        <None Remove="Assets\Games\Game (46).png"/>
-        <None Remove="Assets\Games\Test.jpg"/>
+        <None Remove="Assets\Steam.png" />
+        <None Remove="Assets\Games\Game (1).jpg" />
+        <None Remove="Assets\Games\Game (1).png" />
+        <None Remove="Assets\Games\Game (1).webp" />
+        <None Remove="Assets\Games\Game (2).jpg" />
+        <None Remove="Assets\Games\Game (2).png" />
+        <None Remove="Assets\Games\Game (2).webp" />
+        <None Remove="Assets\Games\Game (3).jpg" />
+        <None Remove="Assets\Games\Game (3).png" />
+        <None Remove="Assets\Games\Game (4).jpg" />
+        <None Remove="Assets\Games\Game (4).png" />
+        <None Remove="Assets\Games\Game (5).jpg" />
+        <None Remove="Assets\Games\Game (5).png" />
+        <None Remove="Assets\Games\Game (6).jpg" />
+        <None Remove="Assets\Games\Game (6).png" />
+        <None Remove="Assets\Games\Game (7).jpg" />
+        <None Remove="Assets\Games\Game (7).png" />
+        <None Remove="Assets\Games\Game (8).png" />
+        <None Remove="Assets\Games\Game (9).png" />
+        <None Remove="Assets\Games\Game (10).png" />
+        <None Remove="Assets\Games\Game (11).png" />
+        <None Remove="Assets\Games\Game (12).png" />
+        <None Remove="Assets\Games\Game (13).png" />
+        <None Remove="Assets\Games\Game (14).png" />
+        <None Remove="Assets\Games\Game (15).png" />
+        <None Remove="Assets\Games\Game (16).png" />
+        <None Remove="Assets\Games\Game (17).png" />
+        <None Remove="Assets\Games\Game (18).png" />
+        <None Remove="Assets\Games\Game (19).png" />
+        <None Remove="Assets\Games\Game (20).png" />
+        <None Remove="Assets\Games\Game (21).png" />
+        <None Remove="Assets\Games\Game (22).png" />
+        <None Remove="Assets\Games\Game (23).png" />
+        <None Remove="Assets\Games\Game (24).png" />
+        <None Remove="Assets\Games\Game (25).png" />
+        <None Remove="Assets\Games\Game (26).png" />
+        <None Remove="Assets\Games\Game (27).png" />
+        <None Remove="Assets\Games\Game (28).png" />
+        <None Remove="Assets\Games\Game (29).png" />
+        <None Remove="Assets\Games\Game (30).png" />
+        <None Remove="Assets\Games\Game (31).png" />
+        <None Remove="Assets\Games\Game (32).png" />
+        <None Remove="Assets\Games\Game (33).png" />
+        <None Remove="Assets\Games\Game (34).png" />
+        <None Remove="Assets\Games\Game (35).png" />
+        <None Remove="Assets\Games\Game (36).png" />
+        <None Remove="Assets\Games\Game (37).png" />
+        <None Remove="Assets\Games\Game (38).png" />
+        <None Remove="Assets\Games\Game (39).png" />
+        <None Remove="Assets\Games\Game (40).png" />
+        <None Remove="Assets\Games\Game (41).png" />
+        <None Remove="Assets\Games\Game (42).png" />
+        <None Remove="Assets\Games\Game (43).png" />
+        <None Remove="Assets\Games\Game (44).png" />
+        <None Remove="Assets\Games\Game (45).png" />
+        <None Remove="Assets\Games\Game (46).png" />
+        <None Remove="Assets\Games\Test.jpg" />
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0"/>
-        <PackageReference Include="Dapper" Version="2.1.66"/>
+        <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
+        <PackageReference Include="Dapper" Version="2.1.66" />
         <PackageReference Include="EO.WebBrowser" Version="26.1.34" />
-        <PackageReference Include="HandyControl" Version="3.6.0-rc3"/>
-        <PackageReference Include="Microsoft.Data.SqlClient" Version="7.0.0-preview3.25342.7"/>
-        <PackageReference Include="Microsoft.Data.Sqlite" Version="10.0.2"/>
-        <PackageReference Include="MySqlConnector" Version="2.5.0"/>
-        <PackageReference Include="Newtonsoft.Json" Version="13.0.5-beta1"/>
-        <PackageReference Include="SkiaSharp.Views" Version="3.119.3-preview.1.1"/>
-        <PackageReference Include="System.Drawing.Common" Version="10.0.2"/>
-        <PackageReference Include="System.IO.Ports" Version="9.0.0"/>
-        <PackageReference Include="WPF-UI" Version="4.0.3"/>
+        <PackageReference Include="HandyControl" Version="3.6.0-rc3" />
+        <PackageReference Include="Microsoft.Data.SqlClient" Version="7.0.0-preview3.25342.7" />
+        <PackageReference Include="Microsoft.Data.Sqlite" Version="10.0.2" />
+        <PackageReference Include="MySqlConnector" Version="2.5.0" />
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.5-beta1" />
+        <PackageReference Include="SkiaSharp.Views" Version="3.119.3-preview.1.1" />
+        <PackageReference Include="System.Drawing.Common" Version="10.0.2" />
+        <PackageReference Include="System.IO.Ports" Version="9.0.0" />
+        <PackageReference Include="WPF-UI" Version="4.0.3" />
+        <PackageReference Include="WpfAnimatedGif" Version="2.0.2" />
     </ItemGroup>
 
     <ItemGroup>
-        <None Remove="Assets\Backgrounds\PNG\Launcher.png"/>
-        <Resource Include="Assets\backgrounds\png\launcher.png"/>
-        <None Remove="Assets\shaders\effects\crt.ps"/>
+        <None Remove="Assets\Backgrounds\PNG\Launcher.png" />
+        <Resource Include="Assets\backgrounds\png\launcher.png" />
+        <None Remove="Assets\shaders\effects\crt.ps" />
         <Resource Include="Assets\data\weapons.json" />
-        <Resource Include="Assets\shaders\effects\crt.ps"/>
-        <None Remove="Assets\backgrounds\png\launcher-2.png"/>
-        <Resource Include="Assets\backgrounds\png\launcher-2.png"/>
-        <None Remove="Assets\backgrounds\png\launcher-3.png"/>
-        <Resource Include="Assets\backgrounds\png\launcher-3.png"/>
-        <None Remove="Assets\shaders\effects\smoke.ps"/>
-        <None Remove="Assets\fonts\overseer.ttf"/>
-        <Resource Include="Assets\fonts\overseer.ttf"/>
-        <None Remove="Assets\fonts\helvetica.ttf"/>
-        <None Remove="Assets\images\Fallout - New Vegas.jpg"/>
-        <None Remove="Assets\images\Fallout - 4.png"/>
-        <None Remove="Assets\fonts\alvera.ttf"/>
-        <None Remove="Assets\images\vault-tec.png"/>
-        <None Remove="Assets\images\hourglass.png"/>
-        <Resource Include="Assets\images\hourglass.png"/>
-        <None Remove="Assets\images\folder-yellow.png"/>
-        <None Remove="Assets\images\folder-black.png"/>
-        <None Remove="Assets\fonts\alvera square.ttf"/>
-        <None Remove="Assets\fonts\doto.ttf"/>
-        <Resource Include="Assets\fonts\doto.ttf"/>
-        <None Remove="Assets\fonts\doto-bold.ttf"/>
-        <Resource Include="Assets\fonts\doto-bold.ttf"/>
-        <None Remove="Assets\images\DownArrow.png"/>
-        <Resource Include="Assets\images\downArrow.png"/>
-        <None Remove="Assets\images\fallout4.png"/>
-        <Resource Include="Assets\images\fallout4.png"/>
-        <None Remove="Assets\images\falloutNewVegas.jpg"/>
-        <Resource Include="Assets\images\falloutNewVegas.jpg"/>
-        <None Remove="Assets\images\folderBlack.png"/>
-        <Resource Include="Assets\images\folderBlack.png"/>
-        <None Remove="Assets\images\folderYellow.png"/>
-        <Resource Include="Assets\images\folderYellow.png"/>
-        <None Remove="Assets\images\vaultTec.png"/>
-        <Resource Include="Assets\images\vaultTec.png"/>
-        <None Remove="Assets\fonts\bsod-font.ttf"/>
-        <Resource Include="Assets\fonts\bsod-font.ttf"/>
-        <None Remove="Assets\fonts\Minecraftia-Regular.ttf"/>
-        <Resource Include="Assets\fonts\minecraftia.ttf"/>
-        <None Remove="Assets\images\bethesdaWhite.png"/>
-        <Resource Include="Assets\images\bethesdaWhite.png"/>
-        <None Remove="Assets\images\bethesda.png"/>
-        <Resource Include="Assets\images\bethesda.png"/>
-        <None Remove="Assets\images\bethesdaYellow.png"/>
-        <Resource Include="Assets\images\bethesdaYellow.png"/>
-        <None Remove="Assets\fonts\ubuntu mono.ttf"/>
-        <Resource Include="Assets\fonts\ubuntu mono.ttf"/>
-        <None Remove="Assets\images\empty.png"/>
-        <Resource Include="Assets\images\empty.png"/>
-        <None Remove="Assets\images\powerArmor.png"/>
-        <Resource Include="Assets\shaders\effects\smoke.ps"/>
-        <None Remove="Assets\images\test.png"/>
-        <Resource Include="Assets\images\test.png"/>
-        <Resource Include="Assets\videos\Video.mp4"/>
-        <None Remove="Assets\images\overseerWars\icons\player.png"/>
-        <None Remove="Assets\images\overseerWars\texturemaps\items_femaleOutfits.png"/>
-        <Resource Include="Assets\images\overseerWars\texturemaps\items_femaleOutfits.png"/>
-        <None Remove="Assets\images\overseerWars\texturemaps\items_maleOutfits.png"/>
-        <Resource Include="Assets\images\overseerWars\texturemaps\items_maleOutfits.png"/>
-        <None Remove="Assets\images\overseerWars\texturemaps\items_outfitAccessories.png"/>
-        <Resource Include="Assets\images\overseerWars\texturemaps\items_outfitAccessories.png"/>
-        <None Remove="Assets\fonts\bebas neue.ttf"/>
-        <Resource Include="Assets\fonts\bebas neue.ttf"/>
-        <None Remove="Assets\images\overseerWars\cards\back.png"/>
-        <Resource Include="Assets\images\overseerWars\cards\back.png"/>
-        <None Remove="Assets\images\overseerWars\cards\card_circle.png"/>
-        <Resource Include="Assets\images\overseerWars\cards\card_circle.png"/>
-        <None Remove="Assets\images\overseerWars\cards\card_color_common.png"/>
-        <Resource Include="Assets\images\overseerWars\cards\card_color_common.png"/>
-        <None Remove="Assets\images\overseerWars\cards\card_color_epic.png"/>
-        <Resource Include="Assets\images\overseerWars\cards\card_color_epic.png"/>
-        <None Remove="Assets\images\overseerWars\cards\card_color_legendary.png"/>
-        <Resource Include="Assets\images\overseerWars\cards\card_color_legendary.png"/>
-        <None Remove="Assets\images\overseerWars\cards\card_color_rare.png"/>
-        <Resource Include="Assets\images\overseerWars\cards\card_color_rare.png"/>
-        <None Remove="Assets\images\overseerWars\cards\card_color_uncommon.png"/>
-        <Resource Include="Assets\images\overseerWars\cards\card_color_uncommon.png"/>
-        <None Remove="Assets\images\overseerWars\cards\card_outercircle.png"/>
-        <None Remove="Assets\images\overseerWars\cards\card_top.png"/>
-        <None Remove="Assets\images\overseerWars\cards\front.png"/>
-        <Resource Include="Assets\images\overseerWars\cards\front.png"/>
-        <None Remove="Assets\images\overseerWars\cards\card_border.png"/>
-        <None Remove="Assets\images\overseerWars\cards\card_circleborder.png"/>
-        <Resource Include="Assets\images\overseerWars\cards\card_circleborder.png"/>
-        <None Remove="Assets\images\overseerWars\cards\card_top_common.png"/>
-        <Resource Include="Assets\images\overseerWars\cards\card_top_common.png"/>
-        <None Remove="Assets\images\overseerWars\cards\card_top_epic.png"/>
-        <Resource Include="Assets\images\overseerWars\cards\card_top_epic.png"/>
-        <None Remove="Assets\images\overseerWars\cards\card_top_legendary.png"/>
-        <Resource Include="Assets\images\overseerWars\cards\card_top_legendary.png"/>
-        <None Remove="Assets\images\overseerWars\cards\card_top_rare.png"/>
-        <Resource Include="Assets\images\overseerWars\cards\card_top_rare.png"/>
-        <None Remove="Assets\images\overseerWars\cards\card_top_uncommon.png"/>
-        <Resource Include="Assets\images\overseerWars\cards\card_top_uncommon.png"/>
-        <None Remove="Assets\images\overseerWars\cards\front - Copie.png"/>
-        <Resource Include="Assets\images\overseerWars\cards\front - Copie.png"/>
-        <None Remove="Assets\images\overseerWars\cards\card_border_epic.png"/>
-        <Resource Include="Assets\images\overseerWars\cards\card_border_epic.png"/>
-        <None Remove="Assets\images\overseerWars\cards\card_border_common.png"/>
-        <Resource Include="Assets\images\overseerWars\cards\card_border_common.png"/>
-        <None Remove="Assets\images\overseerWars\cards\card_border_legendary.png"/>
-        <Resource Include="Assets\images\overseerWars\cards\card_border_legendary.png"/>
-        <None Remove="Assets\images\overseerWars\cards\card_border_rare.png"/>
-        <Resource Include="Assets\images\overseerWars\cards\card_border_rare.png"/>
-        <None Remove="Assets\images\overseerWars\cards\card_border_uncommon.png"/>
-        <Resource Include="Assets\images\overseerWars\cards\card_border_uncommon.png"/>
-        <None Remove="Assets\images\overseerWars\dwellers\butch.png"/>
-        <Resource Include="Assets\images\overseerWars\dwellers\butch.png"/>
-        <None Remove="Assets\images\overseerWars\dwellers\abraham_washington.png"/>
-        <Resource Include="Assets\images\overseerWars\dwellers\abraham_washington.png"/>
-        <None Remove="Assets\images\overseerWars\dwellers\allistair_tenpenny.png"/>
-        <Resource Include="Assets\images\overseerWars\dwellers\allistair_tenpenny.png"/>
-        <None Remove="Assets\images\overseerWars\dwellers\amata.png"/>
-        <Resource Include="Assets\images\overseerWars\dwellers\amata.png"/>
-        <None Remove="Assets\images\overseerWars\dwellers\bittercup.png"/>
-        <Resource Include="Assets\images\overseerWars\dwellers\bittercup.png"/>
-        <None Remove="Assets\images\overseerWars\dwellers\colonel_autumn.png"/>
-        <Resource Include="Assets\images\overseerWars\dwellers\colonel_autumn.png"/>
-        <None Remove="Assets\images\overseerWars\dwellers\confessor_cronwell.png"/>
-        <Resource Include="Assets\images\overseerWars\dwellers\confessor_cronwell.png"/>
-        <None Remove="Assets\images\overseerWars\dwellers\dr_li.png"/>
-        <Resource Include="Assets\images\overseerWars\dwellers\dr_li.png"/>
-        <None Remove="Assets\images\overseerWars\dwellers\ed_the_ghoul.png"/>
-        <Resource Include="Assets\images\overseerWars\dwellers\ed_the_ghoul.png"/>
-        <None Remove="Assets\images\overseerWars\dwellers\elder_lyons.png"/>
-        <Resource Include="Assets\images\overseerWars\dwellers\elder_lyons.png"/>
-        <None Remove="Assets\images\overseerWars\dwellers\eulogy_jones.png"/>
-        <Resource Include="Assets\images\overseerWars\dwellers\eulogy_jones.png"/>
-        <None Remove="Assets\images\overseerWars\dwellers\harkness.png"/>
-        <Resource Include="Assets\images\overseerWars\dwellers\harkness.png"/>
-        <None Remove="Assets\images\overseerWars\dwellers\james.png"/>
-        <Resource Include="Assets\images\overseerWars\dwellers\james.png"/>
-        <None Remove="Assets\images\overseerWars\dwellers\jericho.png"/>
-        <Resource Include="Assets\images\overseerWars\dwellers\jericho.png"/>
-        <None Remove="Assets\images\overseerWars\dwellers\luc_the_human.png"/>
-        <Resource Include="Assets\images\overseerWars\dwellers\luc_the_human.png"/>
-        <None Remove="Assets\images\overseerWars\dwellers\lucas_simms.png"/>
-        <Resource Include="Assets\images\overseerWars\dwellers\lucas_simms.png"/>
-        <None Remove="Assets\images\overseerWars\dwellers\lucy.png"/>
-        <Resource Include="Assets\images\overseerWars\dwellers\lucy.png"/>
-        <None Remove="Assets\images\overseerWars\dwellers\ma_june.png"/>
-        <Resource Include="Assets\images\overseerWars\dwellers\ma_june.png"/>
-        <None Remove="Assets\images\overseerWars\dwellers\maximus.png"/>
-        <Resource Include="Assets\images\overseerWars\dwellers\maximus.png"/>
-        <None Remove="Assets\images\overseerWars\dwellers\moira_brown.png"/>
-        <Resource Include="Assets\images\overseerWars\dwellers\moira_brown.png"/>
-        <None Remove="Assets\images\overseerWars\dwellers\mr_burke.png"/>
-        <Resource Include="Assets\images\overseerWars\dwellers\mr_burke.png"/>
-        <None Remove="Assets\images\overseerWars\dwellers\old_longfellow.png"/>
-        <Resource Include="Assets\images\overseerWars\dwellers\old_longfellow.png"/>
-        <None Remove="Assets\images\overseerWars\dwellers\overseer_76.png"/>
-        <Resource Include="Assets\images\overseerWars\dwellers\overseer_76.png"/>
-        <None Remove="Assets\images\overseerWars\dwellers\piper.png"/>
-        <Resource Include="Assets\images\overseerWars\dwellers\piper.png"/>
-        <None Remove="Assets\images\overseerWars\dwellers\preston_garvey.png"/>
-        <Resource Include="Assets\images\overseerWars\dwellers\preston_garvey.png"/>
-        <None Remove="Assets\images\overseerWars\dwellers\sarah_lyons.png"/>
-        <Resource Include="Assets\images\overseerWars\dwellers\sarah_lyons.png"/>
-        <None Remove="Assets\images\overseerWars\dwellers\scribe_rothchild.png"/>
-        <Resource Include="Assets\images\overseerWars\dwellers\scribe_rothchild.png"/>
-        <None Remove="Assets\images\overseerWars\dwellers\scribe_valdez.png"/>
-        <Resource Include="Assets\images\overseerWars\dwellers\scribe_valdez.png"/>
-        <None Remove="Assets\images\overseerWars\dwellers\snake_oil_salesman.png"/>
-        <Resource Include="Assets\images\overseerWars\dwellers\snake_oil_salesman.png"/>
-        <None Remove="Assets\images\overseerWars\dwellers\star_cross_paladin.png"/>
-        <Resource Include="Assets\images\overseerWars\dwellers\star_cross_paladin.png"/>
-        <None Remove="Assets\images\overseerWars\dwellers\the_ghoul.png"/>
-        <Resource Include="Assets\images\overseerWars\dwellers\the_ghoul.png"/>
-        <None Remove="Assets\images\overseerWars\dwellers\three_dog.png"/>
-        <Resource Include="Assets\images\overseerWars\dwellers\three_dog.png"/>
-        <None Remove="Assets\data\dwellers.json"/>
-        <Resource Include="Assets\data\dwellers.json"/>
-        <None Remove="Assets\images\overseerWars\dwellers\white.png"/>
-        <Resource Include="Assets\images\overseerWars\dwellers\white.png"/>
-        <None Remove="Assets\Backgrounds\PNG\main-menu.png"/>
+        <Resource Include="Assets\shaders\effects\crt.ps" />
+        <None Remove="Assets\backgrounds\png\launcher-2.png" />
+        <Resource Include="Assets\backgrounds\png\launcher-2.png" />
+        <None Remove="Assets\backgrounds\png\launcher-3.png" />
+        <Resource Include="Assets\backgrounds\png\launcher-3.png" />
+        <None Remove="Assets\shaders\effects\smoke.ps" />
+        <None Remove="Assets\fonts\overseer.ttf" />
+        <Resource Include="Assets\fonts\overseer.ttf" />
+        <None Remove="Assets\fonts\helvetica.ttf" />
+        <None Remove="Assets\images\Fallout - New Vegas.jpg" />
+        <None Remove="Assets\images\Fallout - 4.png" />
+        <None Remove="Assets\fonts\alvera.ttf" />
+        <None Remove="Assets\images\vault-tec.png" />
+        <None Remove="Assets\images\hourglass.png" />
+        <Resource Include="Assets\images\hourglass.png" />
+        <None Remove="Assets\images\folder-yellow.png" />
+        <None Remove="Assets\images\folder-black.png" />
+        <None Remove="Assets\fonts\alvera square.ttf" />
+        <None Remove="Assets\fonts\doto.ttf" />
+        <Resource Include="Assets\fonts\doto.ttf" />
+        <None Remove="Assets\fonts\doto-bold.ttf" />
+        <Resource Include="Assets\fonts\doto-bold.ttf" />
+        <None Remove="Assets\images\DownArrow.png" />
+        <Resource Include="Assets\images\downArrow.png" />
+        <None Remove="Assets\images\fallout4.png" />
+        <Resource Include="Assets\images\fallout4.png" />
+        <None Remove="Assets\images\falloutNewVegas.jpg" />
+        <Resource Include="Assets\images\falloutNewVegas.jpg" />
+        <None Remove="Assets\images\folderBlack.png" />
+        <Resource Include="Assets\images\folderBlack.png" />
+        <None Remove="Assets\images\folderYellow.png" />
+        <Resource Include="Assets\images\folderYellow.png" />
+        <None Remove="Assets\images\vaultTec.png" />
+        <Resource Include="Assets\images\vaultTec.png" />
+        <None Remove="Assets\fonts\bsod-font.ttf" />
+        <Resource Include="Assets\fonts\bsod-font.ttf" />
+        <None Remove="Assets\fonts\Minecraftia-Regular.ttf" />
+        <Resource Include="Assets\fonts\minecraftia.ttf" />
+        <None Remove="Assets\images\bethesdaWhite.png" />
+        <Resource Include="Assets\images\bethesdaWhite.png" />
+        <None Remove="Assets\images\bethesda.png" />
+        <Resource Include="Assets\images\bethesda.png" />
+        <None Remove="Assets\images\bethesdaYellow.png" />
+        <Resource Include="Assets\images\bethesdaYellow.png" />
+        <None Remove="Assets\fonts\ubuntu mono.ttf" />
+        <Resource Include="Assets\fonts\ubuntu mono.ttf" />
+        <None Remove="Assets\images\empty.png" />
+        <Resource Include="Assets\images\empty.png" />
+        <None Remove="Assets\images\powerArmor.png" />
+        <Resource Include="Assets\shaders\effects\smoke.ps" />
+        <None Remove="Assets\images\test.png" />
+        <Resource Include="Assets\images\test.png" />
+        <Resource Include="Assets\videos\Video.mp4" />
+        <None Remove="Assets\images\overseerWars\icons\player.png" />
+        <None Remove="Assets\images\overseerWars\texturemaps\items_femaleOutfits.png" />
+        <Resource Include="Assets\images\overseerWars\texturemaps\items_femaleOutfits.png" />
+        <None Remove="Assets\images\overseerWars\texturemaps\items_maleOutfits.png" />
+        <Resource Include="Assets\images\overseerWars\texturemaps\items_maleOutfits.png" />
+        <None Remove="Assets\images\overseerWars\texturemaps\items_outfitAccessories.png" />
+        <Resource Include="Assets\images\overseerWars\texturemaps\items_outfitAccessories.png" />
+        <None Remove="Assets\fonts\bebas neue.ttf" />
+        <Resource Include="Assets\fonts\bebas neue.ttf" />
+        <None Remove="Assets\images\overseerWars\cards\back.png" />
+        <Resource Include="Assets\images\overseerWars\cards\back.png" />
+        <None Remove="Assets\images\overseerWars\cards\card_circle.png" />
+        <Resource Include="Assets\images\overseerWars\cards\card_circle.png" />
+        <None Remove="Assets\images\overseerWars\cards\card_color_common.png" />
+        <Resource Include="Assets\images\overseerWars\cards\card_color_common.png" />
+        <None Remove="Assets\images\overseerWars\cards\card_color_epic.png" />
+        <Resource Include="Assets\images\overseerWars\cards\card_color_epic.png" />
+        <None Remove="Assets\images\overseerWars\cards\card_color_legendary.png" />
+        <Resource Include="Assets\images\overseerWars\cards\card_color_legendary.png" />
+        <None Remove="Assets\images\overseerWars\cards\card_color_rare.png" />
+        <Resource Include="Assets\images\overseerWars\cards\card_color_rare.png" />
+        <None Remove="Assets\images\overseerWars\cards\card_color_uncommon.png" />
+        <Resource Include="Assets\images\overseerWars\cards\card_color_uncommon.png" />
+        <None Remove="Assets\images\overseerWars\cards\card_outercircle.png" />
+        <None Remove="Assets\images\overseerWars\cards\card_top.png" />
+        <None Remove="Assets\images\overseerWars\cards\front.png" />
+        <Resource Include="Assets\images\overseerWars\cards\front.png" />
+        <None Remove="Assets\images\overseerWars\cards\card_border.png" />
+        <None Remove="Assets\images\overseerWars\cards\card_circleborder.png" />
+        <Resource Include="Assets\images\overseerWars\cards\card_circleborder.png" />
+        <None Remove="Assets\images\overseerWars\cards\card_top_common.png" />
+        <Resource Include="Assets\images\overseerWars\cards\card_top_common.png" />
+        <None Remove="Assets\images\overseerWars\cards\card_top_epic.png" />
+        <Resource Include="Assets\images\overseerWars\cards\card_top_epic.png" />
+        <None Remove="Assets\images\overseerWars\cards\card_top_legendary.png" />
+        <Resource Include="Assets\images\overseerWars\cards\card_top_legendary.png" />
+        <None Remove="Assets\images\overseerWars\cards\card_top_rare.png" />
+        <Resource Include="Assets\images\overseerWars\cards\card_top_rare.png" />
+        <None Remove="Assets\images\overseerWars\cards\card_top_uncommon.png" />
+        <Resource Include="Assets\images\overseerWars\cards\card_top_uncommon.png" />
+        <None Remove="Assets\images\overseerWars\cards\front - Copie.png" />
+        <Resource Include="Assets\images\overseerWars\cards\front - Copie.png" />
+        <None Remove="Assets\images\overseerWars\cards\card_border_epic.png" />
+        <Resource Include="Assets\images\overseerWars\cards\card_border_epic.png" />
+        <None Remove="Assets\images\overseerWars\cards\card_border_common.png" />
+        <Resource Include="Assets\images\overseerWars\cards\card_border_common.png" />
+        <None Remove="Assets\images\overseerWars\cards\card_border_legendary.png" />
+        <Resource Include="Assets\images\overseerWars\cards\card_border_legendary.png" />
+        <None Remove="Assets\images\overseerWars\cards\card_border_rare.png" />
+        <Resource Include="Assets\images\overseerWars\cards\card_border_rare.png" />
+        <None Remove="Assets\images\overseerWars\cards\card_border_uncommon.png" />
+        <Resource Include="Assets\images\overseerWars\cards\card_border_uncommon.png" />
+        <None Remove="Assets\images\overseerWars\dwellers\butch.png" />
+        <Resource Include="Assets\images\overseerWars\dwellers\butch.png" />
+        <None Remove="Assets\images\overseerWars\dwellers\abraham_washington.png" />
+        <Resource Include="Assets\images\overseerWars\dwellers\abraham_washington.png" />
+        <None Remove="Assets\images\overseerWars\dwellers\allistair_tenpenny.png" />
+        <Resource Include="Assets\images\overseerWars\dwellers\allistair_tenpenny.png" />
+        <None Remove="Assets\images\overseerWars\dwellers\amata.png" />
+        <Resource Include="Assets\images\overseerWars\dwellers\amata.png" />
+        <None Remove="Assets\images\overseerWars\dwellers\bittercup.png" />
+        <Resource Include="Assets\images\overseerWars\dwellers\bittercup.png" />
+        <None Remove="Assets\images\overseerWars\dwellers\colonel_autumn.png" />
+        <Resource Include="Assets\images\overseerWars\dwellers\colonel_autumn.png" />
+        <None Remove="Assets\images\overseerWars\dwellers\confessor_cronwell.png" />
+        <Resource Include="Assets\images\overseerWars\dwellers\confessor_cronwell.png" />
+        <None Remove="Assets\images\overseerWars\dwellers\dr_li.png" />
+        <Resource Include="Assets\images\overseerWars\dwellers\dr_li.png" />
+        <None Remove="Assets\images\overseerWars\dwellers\ed_the_ghoul.png" />
+        <Resource Include="Assets\images\overseerWars\dwellers\ed_the_ghoul.png" />
+        <None Remove="Assets\images\overseerWars\dwellers\elder_lyons.png" />
+        <Resource Include="Assets\images\overseerWars\dwellers\elder_lyons.png" />
+        <None Remove="Assets\images\overseerWars\dwellers\eulogy_jones.png" />
+        <Resource Include="Assets\images\overseerWars\dwellers\eulogy_jones.png" />
+        <None Remove="Assets\images\overseerWars\dwellers\harkness.png" />
+        <Resource Include="Assets\images\overseerWars\dwellers\harkness.png" />
+        <None Remove="Assets\images\overseerWars\dwellers\james.png" />
+        <Resource Include="Assets\images\overseerWars\dwellers\james.png" />
+        <None Remove="Assets\images\overseerWars\dwellers\jericho.png" />
+        <Resource Include="Assets\images\overseerWars\dwellers\jericho.png" />
+        <None Remove="Assets\images\overseerWars\dwellers\luc_the_human.png" />
+        <Resource Include="Assets\images\overseerWars\dwellers\luc_the_human.png" />
+        <None Remove="Assets\images\overseerWars\dwellers\lucas_simms.png" />
+        <Resource Include="Assets\images\overseerWars\dwellers\lucas_simms.png" />
+        <None Remove="Assets\images\overseerWars\dwellers\lucy.png" />
+        <Resource Include="Assets\images\overseerWars\dwellers\lucy.png" />
+        <None Remove="Assets\images\overseerWars\dwellers\ma_june.png" />
+        <Resource Include="Assets\images\overseerWars\dwellers\ma_june.png" />
+        <None Remove="Assets\images\overseerWars\dwellers\maximus.png" />
+        <Resource Include="Assets\images\overseerWars\dwellers\maximus.png" />
+        <None Remove="Assets\images\overseerWars\dwellers\moira_brown.png" />
+        <Resource Include="Assets\images\overseerWars\dwellers\moira_brown.png" />
+        <None Remove="Assets\images\overseerWars\dwellers\mr_burke.png" />
+        <Resource Include="Assets\images\overseerWars\dwellers\mr_burke.png" />
+        <None Remove="Assets\images\overseerWars\dwellers\old_longfellow.png" />
+        <Resource Include="Assets\images\overseerWars\dwellers\old_longfellow.png" />
+        <None Remove="Assets\images\overseerWars\dwellers\overseer_76.png" />
+        <Resource Include="Assets\images\overseerWars\dwellers\overseer_76.png" />
+        <None Remove="Assets\images\overseerWars\dwellers\piper.png" />
+        <Resource Include="Assets\images\overseerWars\dwellers\piper.png" />
+        <None Remove="Assets\images\overseerWars\dwellers\preston_garvey.png" />
+        <Resource Include="Assets\images\overseerWars\dwellers\preston_garvey.png" />
+        <None Remove="Assets\images\overseerWars\dwellers\sarah_lyons.png" />
+        <Resource Include="Assets\images\overseerWars\dwellers\sarah_lyons.png" />
+        <None Remove="Assets\images\overseerWars\dwellers\scribe_rothchild.png" />
+        <Resource Include="Assets\images\overseerWars\dwellers\scribe_rothchild.png" />
+        <None Remove="Assets\images\overseerWars\dwellers\scribe_valdez.png" />
+        <Resource Include="Assets\images\overseerWars\dwellers\scribe_valdez.png" />
+        <None Remove="Assets\images\overseerWars\dwellers\snake_oil_salesman.png" />
+        <Resource Include="Assets\images\overseerWars\dwellers\snake_oil_salesman.png" />
+        <None Remove="Assets\images\overseerWars\dwellers\star_cross_paladin.png" />
+        <Resource Include="Assets\images\overseerWars\dwellers\star_cross_paladin.png" />
+        <None Remove="Assets\images\overseerWars\dwellers\the_ghoul.png" />
+        <Resource Include="Assets\images\overseerWars\dwellers\the_ghoul.png" />
+        <None Remove="Assets\images\overseerWars\dwellers\three_dog.png" />
+        <Resource Include="Assets\images\overseerWars\dwellers\three_dog.png" />
+        <None Remove="Assets\data\dwellers.json" />
+        <Resource Include="Assets\data\dwellers.json" />
+        <None Remove="Assets\images\overseerWars\dwellers\white.png" />
+        <Resource Include="Assets\images\overseerWars\dwellers\white.png" />
+        <None Remove="Assets\Backgrounds\PNG\main-menu.png" />
         <Content Include="Assets\Backgrounds\PNG\main-menu.png">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
@@ -273,10 +274,18 @@
         <Resource Include="Assets\images\overseerWars\dwellers\dweller.png" />
         <None Remove="Assets\videos\house.mp4" />
         <Resource Include="Assets\videos\house.mp4" />
+        <None Remove="Assets\Backgrounds\JPG\PipBoy.jpg" />
+        <Resource Include="Assets\Backgrounds\JPG\PipBoy.jpg">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Resource>
+        <None Remove="Assets\gif\vaultboy.gif" />
+        <Resource Include="Assets\gif\vaultboy.gif">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Resource>
     </ItemGroup>
 
     <ItemGroup>
-        <ClCompile Include="Assets\shaders\raw\smoke.fx"/>
+        <ClCompile Include="Assets\shaders\raw\smoke.fx" />
     </ItemGroup>
 
     <ItemGroup>
@@ -409,16 +418,61 @@
           <XamlRuntime>Wpf</XamlRuntime>
           <SubType>Designer</SubType>
         </Page>
+        <Page Update="Project\ModernOverseerWarsMP\Views\BuildRoomControl.xaml">
+          <Generator>MSBuild:Compile</Generator>
+          <XamlRuntime>Wpf</XamlRuntime>
+          <SubType>Designer</SubType>
+        </Page>
+        <Page Update="Project\ModernOverseerWarsMP\Views\ControlCard.xaml">
+          <Generator>MSBuild:Compile</Generator>
+          <XamlRuntime>Wpf</XamlRuntime>
+          <SubType>Designer</SubType>
+        </Page>
+        <Page Update="Project\ModernOverseerWarsMP\Views\DeckPicker.xaml">
+          <Generator>MSBuild:Compile</Generator>
+          <XamlRuntime>Wpf</XamlRuntime>
+          <SubType>Designer</SubType>
+        </Page>
+        <Page Update="Project\ModernOverseerWarsMP\Views\HexTileControl.xaml">
+          <Generator>MSBuild:Compile</Generator>
+          <XamlRuntime>Wpf</XamlRuntime>
+          <SubType>Designer</SubType>
+        </Page>
+        <Page Update="Project\ModernOverseerWarsMP\Views\LoadGameControl.xaml">
+          <Generator>MSBuild:Compile</Generator>
+          <XamlRuntime>Wpf</XamlRuntime>
+          <SubType>Designer</SubType>
+        </Page>
+        <Page Update="Project\ModernOverseerWarsMP\Views\OverseerWarsWindow.xaml">
+          <Generator>MSBuild:Compile</Generator>
+          <XamlRuntime>Wpf</XamlRuntime>
+          <SubType>Designer</SubType>
+        </Page>
+        <Page Update="Project\ModernOverseerWarsMP\Views\StartMenuControl.xaml">
+          <Generator>MSBuild:Compile</Generator>
+          <XamlRuntime>Wpf</XamlRuntime>
+          <SubType>Designer</SubType>
+        </Page>
+        <Page Update="Project\ModernOverseerWarsMP\Views\VaultCardHolder.xaml">
+          <Generator>MSBuild:Compile</Generator>
+          <XamlRuntime>Wpf</XamlRuntime>
+          <SubType>Designer</SubType>
+        </Page>
+        <Page Update="Project\Views\Exercices\Exo3B3.xaml">
+          <Generator>MSBuild:Compile</Generator>
+          <XamlRuntime>Wpf</XamlRuntime>
+          <SubType>Designer</SubType>
+        </Page>
     </ItemGroup>
 
     <ItemGroup>
-        <Content Include=".github\git-commit-instructions.md"/>
+        <Content Include=".github\git-commit-instructions.md" />
     </ItemGroup>
 
     <ItemGroup>
-        <Folder Include="Assets\images\overseerWars\dwellers\"/>
-        <Folder Include="Project\ViewModels\Laboratoires\Laboratoire - DB\"/>
-        <Folder Include="Project\ViewModels\Laboratoires\OverseerWars\VaultManagement\"/>
+        <Folder Include="Assets\images\overseerWars\dwellers\" />
+        <Folder Include="Project\ViewModels\Laboratoires\Laboratoire - DB\" />
+        <Folder Include="Project\ViewModels\Laboratoires\OverseerWars\VaultManagement\" />
     </ItemGroup>
 
 </Project>

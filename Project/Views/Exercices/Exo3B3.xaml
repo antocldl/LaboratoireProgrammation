@@ -1,0 +1,143 @@
+<UserControl x:Class="LaboratoireProgrammation.Project.ViewModels.Exercices.Exo3B3"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:colorhelper="clr-namespace:LaboratoireProgrammation.Project.Helpers"
+             xmlns:local="clr-namespace:LaboratoireProgrammation.Project.ViewModels.Exercices"
+             xmlns:gif="http://wpfanimatedgif.codeplex.com"
+             xmlns:models="clr-namespace:LaboratoireProgrammation.Project.ModernOverseerWarsMP.Models"
+             mc:Ignorable="d" Background="Transparent"
+             d:DesignHeight="600" d:DesignWidth="1000">
+
+    <UserControl.DataContext>
+        <models:Exo3B3ViewModel />
+    </UserControl.DataContext>
+
+    <UserControl.Resources>
+        <SolidColorBrush x:Key="TerminalYellowBrush" Color="{x:Static colorhelper:ColorHelper.FancyText}" />
+        <SolidColorBrush x:Key="TerminalBgBrush" Color="#09090B" />
+        <SolidColorBrush x:Key="TerminalPanelBrush" Color="#111113" />
+        <SolidColorBrush x:Key="TerminalBorderBrush" Color="#2A2A2E" />
+        <FontFamily x:Key="TerminalFont">Consolas</FontFamily>
+
+        <!-- Style des boutons Pip-Boy avec gestion de l'état désactivé -->
+        <Style x:Key="TerminalBtn" TargetType="Button">
+            <Setter Property="Background" Value="#1A1A1C" />
+            <Setter Property="Foreground" Value="{StaticResource TerminalYellowBrush}" />
+            <Setter Property="FontFamily" Value="{StaticResource TerminalFont}" />
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="BorderBrush" Value="{StaticResource TerminalBorderBrush}" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="Padding" Value="10,8" />
+            <Setter Property="Margin" Value="0,6" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="Bd" Background="{TemplateBinding Background}"
+                                Padding="{TemplateBinding Padding}"
+                                BorderBrush="{TemplateBinding BorderBrush}" 
+                                BorderThickness="{TemplateBinding BorderThickness}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Bd" Property="Background" Value="#2A2A2E" />
+                                <Setter TargetName="Bd" Property="BorderBrush" Value="{StaticResource TerminalYellowBrush}" />
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="Bd" Property="Background" Value="{StaticResource TerminalYellowBrush}" />
+                                <Setter Property="Foreground" Value="Black" />
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter TargetName="Bd" Property="Opacity" Value="0.3" />
+                                <Setter Property="Foreground" Value="#555555" />
+                                <Setter Property="Cursor" Value="No" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+
+    <Grid Background="{StaticResource TerminalBgBrush}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="320" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Border Grid.Column="0" Background="#DD111113" BorderBrush="{StaticResource TerminalBorderBrush}" 
+                BorderThickness="0,0,1,0" Padding="20">
+            <StackPanel VerticalAlignment="Center">
+                <TextBlock Text="[ PIP.BOY - CHORNOS ]" FontFamily="{StaticResource TerminalFont}" 
+                           Foreground="{StaticResource TerminalYellowBrush}" FontWeight="Bold" 
+                           FontSize="18" HorizontalAlignment="Center" Margin="0,0,0,20"/>
+
+                <Border Background="#09090B" BorderBrush="{StaticResource TerminalYellowBrush}" 
+                        BorderThickness="1" Padding="10" Margin="0,0,0,25">
+                    <TextBlock Text="{Binding DigitalDisplay}" 
+                               FontFamily="{StaticResource TerminalFont}" 
+                               Foreground="{StaticResource TerminalYellowBrush}" 
+                               FontSize="32" FontWeight="Bold" 
+                               HorizontalAlignment="Center"/>
+                </Border>
+
+                <Button Content="► DEMARRER" Style="{StaticResource TerminalBtn}" Command="{Binding StartCommand}" />
+                <Button Content="❚❚ ARRETER"  Style="{StaticResource TerminalBtn}" Command="{Binding StopCommand}" />
+                <Button Content="↺ REINITIALISER" Style="{StaticResource TerminalBtn}" Command="{Binding ResetCommand}" />
+
+                <TextBlock Text="SYS.VAULT-TEC EXO.3.B3" FontFamily="{StaticResource TerminalFont}" 
+                           Foreground="#555558" FontSize="11" HorizontalAlignment="Center" Margin="0,30,0,0"/>
+            </StackPanel>
+        </Border>
+
+        <Viewbox Grid.Column="1" Margin="40">
+            <Grid Width="300" Height="300">
+                <Ellipse Stroke="{StaticResource TerminalYellowBrush}" StrokeThickness="4" Fill="#EE0F0F12" />
+                <Ellipse Stroke="{StaticResource TerminalBorderBrush}" StrokeThickness="1" Margin="8" />
+
+                <Image x:Name="VaultBoy" gif:ImageBehavior.AnimatedSource="/Assets/gif/vaultboy.gif" 
+                       Opacity="0.20"
+                       gif:ImageBehavior.RepeatBehavior="Forever"
+                       gif:ImageBehavior.AutoStart="False"
+                       Width="200" Height="200"
+                       HorizontalAlignment="Center" VerticalAlignment="Center">
+                </Image>
+
+                <TextBlock Text="60" FontFamily="{StaticResource TerminalFont}" Foreground="{StaticResource TerminalYellowBrush}" 
+                           FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,12,0,0"/>
+                <TextBlock Text="15" FontFamily="{StaticResource TerminalFont}" Foreground="{StaticResource TerminalYellowBrush}" 
+                           FontWeight="Bold" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,15,0"/>
+                <TextBlock Text="30" FontFamily="{StaticResource TerminalFont}" Foreground="{StaticResource TerminalYellowBrush}" 
+                           FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,12"/>
+                <TextBlock Text="45" FontFamily="{StaticResource TerminalFont}" Foreground="{StaticResource TerminalYellowBrush}" 
+                           FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="15,0,0,0"/>
+                
+                <Grid Width="300" Height="300" RenderTransformOrigin="0.5,0.5">
+                    <Grid.RenderTransform>
+                        <RotateTransform Angle="{Binding MinuteAngle}" />
+                    </Grid.RenderTransform>
+                    <Rectangle Width="6" Height="85" Fill="{StaticResource TerminalYellowBrush}" 
+                               HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,65,0,0" RadiusX="2" RadiusY="2"/>
+                </Grid>
+
+                <Grid Width="300" Height="300" RenderTransformOrigin="0.5,0.5">
+                    <Grid.RenderTransform>
+                        <RotateTransform Angle="{Binding SecondAngle}" />
+                    </Grid.RenderTransform>
+                    <Rectangle Width="2" Height="120" Fill="#FF3333" 
+                               HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,30,0,0"/>
+                    <Rectangle Width="4" Height="20" Fill="#FF3333" 
+                               HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,150,0,0"/>
+                </Grid>
+
+                <Ellipse Width="14" Height="14" Fill="{StaticResource TerminalYellowBrush}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <Ellipse Width="6" Height="6" Fill="Black" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Grid>
+        </Viewbox>
+
+    </Grid>
+</UserControl>

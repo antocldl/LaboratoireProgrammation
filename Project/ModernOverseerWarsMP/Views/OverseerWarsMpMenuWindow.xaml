@@ -1,0 +1,467 @@
+<Window x:Class="LaboratoireProgrammation.Project.ModernOverseerWarsMP.Views.OverseerWarsMpMenuWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:wrappers="clr-namespace:LaboratoireProgrammation.Assets.shaders.wrappers"
+        Title="ROBCO INDUSTRIES - OVERSEER WARS MULTIPLAYER"
+        Height="768" Width="1100"
+        WindowStartupLocation="CenterScreen"
+        WindowState="Maximized" WindowStyle="None"
+        Background="#141414"
+        FontFamily="Consolas">
+
+    <Window.Resources>
+        <SolidColorBrush x:Key="TerminalGreen" Color="#FFC346"/>
+        <SolidColorBrush x:Key="TerminalDim" Color="#887030"/>
+        <SolidColorBrush x:Key="TerminalDark" Color="#0A0A0A"/>
+        <DropShadowEffect x:Key="PhosphorGlow" Color="#47FFC346" BlurRadius="12" ShadowDepth="0" Opacity="0.2"/>
+
+        <Style TargetType="TextBlock" x:Key="TerminalText">
+            <Setter Property="Foreground" Value="{StaticResource TerminalGreen}"/>
+            <Setter Property="Effect" Value="{StaticResource PhosphorGlow}"/>
+            <Setter Property="TextOptions.TextFormattingMode" Value="Display"/>
+        </Style>
+
+        <Style TargetType="TextBox" x:Key="TerminalInput">
+            <Setter Property="Background" Value="#1A1A1A"/>
+            <Setter Property="Foreground" Value="{StaticResource TerminalGreen}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource TerminalGreen}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Padding" Value="8,6"/>
+            <Setter Property="CaretBrush" Value="{StaticResource TerminalGreen}"/>
+            <Setter Property="Effect" Value="{StaticResource PhosphorGlow}"/>
+        </Style>
+
+        <Style TargetType="Button" x:Key="TerminalButton">
+            <Setter Property="Background" Value="#00141414"/>
+            <Setter Property="Foreground" Value="{StaticResource TerminalGreen}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource TerminalGreen}"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Padding" Value="20,10"/>
+            <Setter Property="Effect" Value="{StaticResource PhosphorGlow}"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+                                BorderBrush="{TemplateBinding BorderBrush}" 
+                                BorderThickness="{TemplateBinding BorderThickness}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="{StaticResource TerminalGreen}"/>
+                                <Setter Property="Foreground" Value="#020A04"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Opacity" Value="0.35"/>
+                                <Setter Property="BorderBrush" Value="{StaticResource TerminalDim}"/>
+                                <Setter Property="Foreground" Value="{StaticResource TerminalDim}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="Button" x:Key="TabButton" BasedOn="{StaticResource TerminalButton}">
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="Padding" Value="24,8"/>
+            <Setter Property="Margin" Value="0,0,8,0"/>
+        </Style>
+    </Window.Resources>
+
+    <Grid Margin="48,32">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- TOP HEADER -->
+        <Grid Grid.Row="0" Margin="0,0,0,24">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="0">
+                <TextBlock Text="[ ROBCO INDUSTRIES UNIFIED OPERATING SYSTEM - OVERSEER WARS MULTIPLAYER ]" 
+                           Style="{StaticResource TerminalText}" FontSize="15" Opacity="0.75" Margin="0,0,0,4"/>
+                <TextBlock Text="@anto.COM | Protocol" 
+                           Style="{StaticResource TerminalText}" FontSize="28" FontWeight="Bold"/>
+                <Rectangle Height="2" Fill="{StaticResource TerminalGreen}" Margin="0,10,0,0" Effect="{StaticResource PhosphorGlow}"/>
+            </StackPanel>
+
+            <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Top">
+                <Button Content=" [ _ ] " Style="{StaticResource TerminalButton}" Padding="8,4" FontSize="14" Margin="0,0,8,0" Click="OnMinimizeClick"/>
+                <Button Content=" [ X ] " Style="{StaticResource TerminalButton}" Padding="8,4" FontSize="14" Click="OnCloseClick"/>
+            </StackPanel>
+        </Grid>
+
+        <!-- MAIN CONTENT AREA -->
+        <Grid Grid.Row="1">
+
+            <!-- MAIN MENU (WHEN NOT IN LOBBY) -->
+            <Grid x:Name="MenuContainer" Visibility="Visible">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <!-- TAB BAR -->
+                <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,20">
+                    <Button x:Name="TabBrowserBtn" Content="1. SERVER BROWSER" Style="{StaticResource TabButton}" Click="OnTabBrowserClick"/>
+                    <Button x:Name="TabHostBtn" Content="2. CREATE SERVER" Style="{StaticResource TabButton}" Click="OnTabHostClick"/>
+                    <Button x:Name="TabProfileBtn" Content="3. OVERSEER PROFILE" Style="{StaticResource TabButton}" Click="OnTabProfileClick"/>
+                </StackPanel>
+
+                <!-- TAB 1: SERVER BROWSER -->
+                <Grid x:Name="TabBrowser" Grid.Row="1" Visibility="Visible">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid Grid.Row="0" Margin="0,0,0,12">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="> ACTIVE VAULT BROADCASTS ON LOCAL FREQUENCY (LAN)" Style="{StaticResource TerminalText}" FontSize="16" VerticalAlignment="Center"/>
+                        <Button Grid.Column="1" Content="REFRESH SCAN" Style="{StaticResource TerminalButton}" Padding="16,6" FontSize="13" Click="OnRefreshScanClick"/>
+                    </Grid>
+
+                    <!-- SERVER LIST -->
+                    <Border Grid.Row="1" BorderBrush="{StaticResource TerminalGreen}" BorderThickness="1" Background="#0C0C0C" Margin="0,0,0,16">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+
+                            <!-- TABLE HEADER -->
+                            <Border Grid.Row="0" Background="#1A1A1A" BorderBrush="{StaticResource TerminalGreen}" BorderThickness="0,0,0,1" Padding="12,8">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="3*"/>
+                                        <ColumnDefinition Width="2*"/>
+                                        <ColumnDefinition Width="2*"/>
+                                        <ColumnDefinition Width="1*"/>
+                                        <ColumnDefinition Width="1.5*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Grid.Column="0" Text="SERVER NAME" Style="{StaticResource TerminalText}" FontWeight="Bold" FontSize="13"/>
+                                    <TextBlock Grid.Column="1" Text="HOST OVERSEER" Style="{StaticResource TerminalText}" FontWeight="Bold" FontSize="13"/>
+                                    <TextBlock Grid.Column="2" Text="IP ADDRESS : PORT" Style="{StaticResource TerminalText}" FontWeight="Bold" FontSize="13"/>
+                                    <TextBlock Grid.Column="3" Text="PLAYERS" Style="{StaticResource TerminalText}" FontWeight="Bold" FontSize="13"/>
+                                    <TextBlock Grid.Column="4" Text="STATUS" Style="{StaticResource TerminalText}" FontWeight="Bold" FontSize="13"/>
+                                </Grid>
+                            </Border>
+
+                            <!-- LIST BOX -->
+                            <ListBox x:Name="ServerListBox" Grid.Row="1" Background="Transparent" BorderThickness="0"
+                                     ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                     SelectionChanged="OnServerSelectedChanged">
+                                <ListBox.ItemContainerStyle>
+                                    <Style TargetType="ListBoxItem">
+                                        <Setter Property="Padding" Value="0"/>
+                                        <Setter Property="Margin" Value="0"/>
+                                        <Setter Property="Background" Value="Transparent"/>
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="ListBoxItem">
+                                                    <Border x:Name="ItemBorder" Background="{TemplateBinding Background}" BorderThickness="0,0,0,1" BorderBrush="#222" Padding="12,10">
+                                                        <ContentPresenter/>
+                                                    </Border>
+                                                    <ControlTemplate.Triggers>
+                                                        <Trigger Property="IsMouseOver" Value="True">
+                                                            <Setter Property="Background" Value="#252525"/>
+                                                        </Trigger>
+                                                        <Trigger Property="IsSelected" Value="True">
+                                                            <Setter Property="Background" Value="#332A0C"/>
+                                                            <Setter TargetName="ItemBorder" Property="BorderBrush" Value="{StaticResource TerminalGreen}"/>
+                                                        </Trigger>
+                                                    </ControlTemplate.Triggers>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </ListBox.ItemContainerStyle>
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="3*"/>
+                                                <ColumnDefinition Width="2*"/>
+                                                <ColumnDefinition Width="2*"/>
+                                                <ColumnDefinition Width="1*"/>
+                                                <ColumnDefinition Width="1.5*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <TextBlock Grid.Column="0" Text="{Binding ServerName}" Style="{StaticResource TerminalText}" FontSize="14" FontWeight="Bold"/>
+                                            <TextBlock Grid.Column="1" Text="{Binding HostName}" Style="{StaticResource TerminalText}" FontSize="13"/>
+                                            <TextBlock Grid.Column="2" Text="{Binding DisplayAddress}" Style="{StaticResource TerminalText}" FontSize="13" Opacity="0.8"/>
+                                            <TextBlock Grid.Column="3" Text="{Binding PlayersString}" Style="{StaticResource TerminalText}" FontSize="13"/>
+                                            <TextBlock Grid.Column="4" Text="{Binding Status}" Style="{StaticResource TerminalText}" FontSize="13" FontWeight="Bold"/>
+                                        </Grid>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
+
+                            <!-- EMPTY SCAN TEXT -->
+                            <TextBlock x:Name="EmptyScanText" Grid.Row="1" Text="[ SCANNING FREQUENCIES... NO BROADCASTS DETECTED YET ]" 
+                                       Style="{StaticResource TerminalText}" HorizontalAlignment="Center" VerticalAlignment="Center" Opacity="0.5" FontSize="16"/>
+                        </Grid>
+                    </Border>
+
+                    <!-- BOTTOM CONTROLS & DIRECT CONNECT -->
+                    <Grid Grid.Row="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <!-- CONNECT TO SELECTED -->
+                        <Button x:Name="ConnectSelectedBtn" Grid.Column="0" Content="> CONNECT TO SELECTED SERVER" 
+                                Style="{StaticResource TerminalButton}" HorizontalAlignment="Left" IsEnabled="False" Click="OnConnectSelectedClick"/>
+
+                        <TextBlock Grid.Column="1" Text="-- OR DIRECT OVERRIDE --" Style="{StaticResource TerminalText}" VerticalAlignment="Center" Opacity="0.5" Margin="24,0"/>
+
+                        <!-- DIRECT CONNECT -->
+                        <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right">
+                            <TextBox x:Name="DirectIpBox" Text="127.0.0.1" Style="{StaticResource TerminalInput}" Width="150" Margin="0,0,8,0" VerticalAlignment="Center"/>
+                            <TextBox x:Name="DirectPortBox" Text="7777" Style="{StaticResource TerminalInput}" Width="70" Margin="0,0,8,0" VerticalAlignment="Center"/>
+                            <Button Content="DIRECT CONNECT" Style="{StaticResource TerminalButton}" Padding="16,8" FontSize="13" Click="OnDirectConnectClick"/>
+                        </StackPanel>
+                    </Grid>
+                </Grid>
+
+                <!-- TAB 2: CREATE SERVER -->
+                <Grid x:Name="TabHost" Grid.Row="1" Visibility="Collapsed">
+                    <Border BorderBrush="{StaticResource TerminalGreen}" BorderThickness="1" Background="#0C0C0C" Padding="32" MaxWidth="680" HorizontalAlignment="Left">
+                        <StackPanel>
+                            <TextBlock Text="> VAULT TRANSMISSION CONFIGURATION" Style="{StaticResource TerminalText}" FontSize="18" FontWeight="Bold" Margin="0,0,0,24"/>
+
+                            <TextBlock Text="SERVER CODED NAME:" Style="{StaticResource TerminalText}" FontSize="14" Margin="0,0,0,6"/>
+                            <TextBox x:Name="ServerNameBox" Text="Vault 101 Wasteland Command" Style="{StaticResource TerminalInput}" Margin="0,0,0,20"/>
+
+                            <Grid Margin="0,0,0,20">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="16"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <StackPanel Grid.Column="0">
+                                    <TextBlock Text="LISTENING PORT:" Style="{StaticResource TerminalText}" FontSize="14" Margin="0,0,0,6"/>
+                                    <TextBox x:Name="HostPortBox" Text="7777" Style="{StaticResource TerminalInput}"/>
+                                </StackPanel>
+
+                                <StackPanel Grid.Column="2">
+                                    <TextBlock Text="TURN DURATION (SEC):" Style="{StaticResource TerminalText}" FontSize="14" Margin="0,0,0,6"/>
+                                    <TextBox x:Name="TurnDurationBox" Text="60" Style="{StaticResource TerminalInput}"/>
+                                </StackPanel>
+                            </Grid>
+
+                            <CheckBox x:Name="BroadcastLanCheck" IsChecked="True" Content="BROADCAST ON LOCAL AREA NETWORK (LAN BEACON)" 
+                                      Foreground="{StaticResource TerminalGreen}" Margin="0,0,0,32" FontSize="14" Cursor="Hand"/>
+
+                            <Button Content="> INITIALIZE SERVER &amp; OPEN COMMS" Style="{StaticResource TerminalButton}" FontSize="18" Padding="32,16" Click="OnCreateServerClick"/>
+                        </StackPanel>
+                    </Border>
+                </Grid>
+
+                <!-- TAB 3: PROFILE -->
+                <Grid x:Name="TabProfile" Grid.Row="1" Visibility="Collapsed">
+                    <Border BorderBrush="{StaticResource TerminalGreen}" BorderThickness="1" Background="#0C0C0C" Padding="32" MaxWidth="680" HorizontalAlignment="Left">
+                        <StackPanel>
+                            <TextBlock Text="> OVERSEER CREDENTIALS &amp; SPECTRAL SIGNATURE" Style="{StaticResource TerminalText}" FontSize="18" FontWeight="Bold" Margin="0,0,0,24"/>
+
+                            <TextBlock Text="OVERSEER CALLSIGN:" Style="{StaticResource TerminalText}" FontSize="14" Margin="0,0,0,6"/>
+                            <TextBox x:Name="ProfileNameBox" Text="Wanderer" Style="{StaticResource TerminalInput}" Margin="0,0,0,24" TextChanged="OnProfileNameChanged"/>
+
+                            <TextBlock Text="HUD SPECTRAL SIGNATURE (THEME COLOR):" Style="{StaticResource TerminalText}" FontSize="14" Margin="0,0,0,12"/>
+                            <ItemsControl x:Name="ThemeItemsList" Margin="0,0,0,24">
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <WrapPanel/>
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border Width="48" Height="48" CornerRadius="4" Margin="0,0,12,12" Cursor="Hand" Tag="{Binding}" MouseLeftButtonDown="OnThemeDotClicked">
+                                            <Border.Background>
+                                                <SolidColorBrush Color="{Binding DisplayColor}"/>
+                                            </Border.Background>
+                                            <TextBlock Text="[X]" Style="{StaticResource TerminalText}" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                                       Visibility="{Binding IsSelectedVisibility}"/>
+                                        </Border>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+
+                            <!-- PREVIEW CARD -->
+                            <TextBlock Text="OVERSEER TERMINAL PREVIEW:" Style="{StaticResource TerminalText}" FontSize="14" Margin="0,0,0,6"/>
+                            <Border x:Name="ProfilePreviewBorder" Height="64" BorderThickness="2" BorderBrush="{StaticResource TerminalGreen}" Background="#0A1224" Padding="16,8">
+                                <TextBlock x:Name="ProfilePreviewText" Text="Wanderer" FontSize="36" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            </Border>
+                        </StackPanel>
+                    </Border>
+                </Grid>
+
+            </Grid>
+
+            <!-- LOBBY DASHBOARD (WHEN CONNECTED TO / HOSTING A SERVER) -->
+            <Grid x:Name="LobbyContainer" Visibility="Collapsed">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <!-- LOBBY STATUS BAR -->
+                <Border Grid.Row="0" BorderBrush="{StaticResource TerminalGreen}" BorderThickness="1" Background="#0C0C0C" Padding="16,12" Margin="0,0,0,16">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center">
+                            <TextBlock Text="FREQUENCY LINK: " Style="{StaticResource TerminalText}" FontWeight="Bold"/>
+                            <TextBlock x:Name="LobbyServerNameText" Text="Vault 101 Command" Style="{StaticResource TerminalText}" FontWeight="Bold"/>
+                            <TextBlock x:Name="LobbyAddressText" Text=" (127.0.0.1:7777)" Style="{StaticResource TerminalText}" Opacity="0.75"/>
+                        </StackPanel>
+                        <TextBlock x:Name="LobbyStatusRoleText" Grid.Column="1" Text="[ ROLE: HOSTING OVERSEER ]" Style="{StaticResource TerminalText}" FontWeight="Bold"/>
+                    </Grid>
+                </Border>
+
+                <!-- LOBBY MAIN AREA (PLAYERS & CHAT) -->
+                <Grid Grid.Row="1" Margin="0,0,0,16">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1.5*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- PLAYER 1 CARD (HOST) -->
+                    <Border Grid.Column="0" BorderBrush="{StaticResource TerminalGreen}" BorderThickness="1" Background="#0C0C0C" Padding="20" Margin="0,0,12,0">
+                        <StackPanel>
+                            <TextBlock Text="[ HOST OVERSEER (P1) ]" Style="{StaticResource TerminalText}" FontSize="14" Opacity="0.8" Margin="0,0,0,12"/>
+                            <Border x:Name="P1CardBorder" Height="64" BorderThickness="2" BorderBrush="{StaticResource TerminalGreen}" Background="#0A1224" Padding="12" Margin="0,0,0,16">
+                                <TextBlock x:Name="P1NameText" Text="Overseer Alpha" FontSize="26" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+
+                            <TextBlock Text="STATUS: " Style="{StaticResource TerminalText}" FontSize="13" Opacity="0.7"/>
+                            <TextBlock x:Name="P1StatusText" Text="HOST - READY" Style="{StaticResource TerminalText}" FontSize="16" FontWeight="Bold" Margin="0,4,0,16"/>
+
+                            <TextBlock Text="COMMAND:" Style="{StaticResource TerminalText}" FontSize="13" Opacity="0.7"/>
+                            <TextBlock Text="VAULT 1 (WEST)" Style="{StaticResource TerminalText}" FontSize="14" FontWeight="Bold"/>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- REAL-TIME COMMS TERMINAL (CHAT) -->
+                    <Border Grid.Column="1" BorderBrush="{StaticResource TerminalGreen}" BorderThickness="1" Background="#0A0A0A" Padding="16">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <TextBlock Grid.Row="0" Text="> ENCRYPTED VAULT-TO-VAULT COMMS TERMINAL" Style="{StaticResource TerminalText}" FontSize="13" FontWeight="Bold" Margin="0,0,0,8"/>
+
+                            <!-- CHAT LOG -->
+                            <ScrollViewer x:Name="ChatScrollViewer" Grid.Row="1" VerticalScrollBarVisibility="Auto" Margin="0,0,0,12">
+                                <TextBlock x:Name="ChatLogText" Style="{StaticResource TerminalText}" FontSize="13" TextWrapping="Wrap" LineHeight="18"/>
+                            </ScrollViewer>
+
+                            <!-- INPUT BOX -->
+                            <Grid Grid.Row="2">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="8"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBox x:Name="ChatInputBox" Grid.Column="0" Style="{StaticResource TerminalInput}" KeyDown="OnChatInputKeyDown"/>
+                                <Button Grid.Column="2" Content="TRANSMIT" Style="{StaticResource TerminalButton}" Padding="16,6" FontSize="13" Click="OnSendChatClick"/>
+                            </Grid>
+                        </Grid>
+                    </Border>
+
+                    <!-- PLAYER 2 CARD (CLIENT / CHALLENGER) -->
+                    <Border Grid.Column="2" BorderBrush="{StaticResource TerminalGreen}" BorderThickness="1" Background="#0C0C0C" Padding="20" Margin="12,0,0,0">
+                        <StackPanel>
+                            <TextBlock Text="[ CHALLENGER OVERSEER (P2) ]" Style="{StaticResource TerminalText}" FontSize="14" Opacity="0.8" Margin="0,0,0,12"/>
+                            <Border x:Name="P2CardBorder" Height="64" BorderThickness="2" BorderBrush="{StaticResource TerminalDim}" Background="#151515" Padding="12" Margin="0,0,0,16">
+                                <TextBlock x:Name="P2NameText" Text="AWAITING LINK..." FontSize="22" FontWeight="Bold" Foreground="{StaticResource TerminalDim}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+
+                            <TextBlock Text="STATUS: " Style="{StaticResource TerminalText}" FontSize="13" Opacity="0.7"/>
+                            <TextBlock x:Name="P2StatusText" Text="SCANNING..." Style="{StaticResource TerminalText}" FontSize="16" FontWeight="Bold" Margin="0,4,0,16"/>
+
+                            <TextBlock Text="COMMAND:" Style="{StaticResource TerminalText}" FontSize="13" Opacity="0.7"/>
+                            <TextBlock Text="VAULT 2 (EAST)" Style="{StaticResource TerminalText}" FontSize="14" FontWeight="Bold"/>
+                        </StackPanel>
+                    </Border>
+                </Grid>
+
+                <!-- LOBBY ACTION FOOTER -->
+                <Grid Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Button Content="&lt; ABORT / DISCONNECT" Style="{StaticResource TerminalButton}" Padding="20,12" Click="OnAbortLobbyClick"/>
+
+                    <!-- CLIENT READY BUTTON -->
+                    <Button x:Name="ClientReadyBtn" Grid.Column="2" Content="> READY FOR COMBAT [OFF]" Style="{StaticResource TerminalButton}" 
+                            Padding="32,12" FontSize="18" Visibility="Collapsed" Click="OnClientReadyToggleClick"/>
+
+                    <!-- HOST START GAME BUTTON -->
+                    <Button x:Name="HostStartGameBtn" Grid.Column="2" Content="> COMMENCE SIMULATION" Style="{StaticResource TerminalButton}" 
+                            Padding="32,12" FontSize="18" IsEnabled="False" Visibility="Visible" Click="OnHostStartGameClick"/>
+                </Grid>
+            </Grid>
+
+        </Grid>
+
+        <!-- FOOTER STATUS -->
+        <Border Grid.Row="2" Margin="0,16,0,0" BorderBrush="{StaticResource TerminalDim}" BorderThickness="0,1,0,0" Padding="0,8,0,0">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock x:Name="GlobalStatusText" Text="> READY. STANDING BY FOR VAULT COMMS TRANSMISSION." Style="{StaticResource TerminalText}" FontSize="13" Opacity="0.7"/>
+                <TextBlock Grid.Column="1" Text="ROBCO NET-OS 9.0" Style="{StaticResource TerminalText}" FontSize="13" Opacity="0.5"/>
+            </Grid>
+        </Border>
+    </Grid>
+
+    <Window.Effect>
+        <wrappers:CRT x:Name="VaultShader"
+                      DistortionStrength="0.15"
+                      CurveRadius="0.05"
+                      VignetteStrength="0.5"
+                      ScanlineIntensity="0.45"
+                      ScanlineCount="90.0"
+                      ScanlineSpeed="0.02"
+                      PixelGridIntensity="0.12"
+                      BloomStrength="0.35"
+                      ChromaticAberration="0.05"
+                      TintColor="#0FFF7F00"
+                      Brightness="1.8"
+                      Contrast="1.1"
+                      NoiseIntensity="0.01"
+                      NoiseScale="0.8"
+                      FlickerIntensity="0.04"
+                      FlickerSpeed="0.5"
+                      PhosphorDecay="0.5"
+                      ScreenResolution="1080,720" />
+    </Window.Effect>
+</Window>

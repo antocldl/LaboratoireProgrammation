@@ -24,4 +24,11 @@ public partial class BabyModeB3 : UserControl {
             RunSubprograms.RunSub(RunSubprograms.Subprograms.Exercice2B3, window);
         }
     }
+
+    private void Exo3B3(object sender, RoutedEventArgs e) {
+        if (ParentWindow is { } window) {
+            Visibility = Visibility.Collapsed;
+            RunSubprograms.RunSub(RunSubprograms.Subprograms.Exercice3B3, window);
+        }
+    }
 }

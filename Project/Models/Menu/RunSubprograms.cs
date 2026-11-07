@@ -22,7 +22,8 @@ public class RunSubprograms {
         FlashMaster,
         Uplink,
         Exercice1B3,
-        Exercice2B3
+        Exercice2B3,
+        Exercice3B3
     }
 
     public static void RunSub(Subprograms sub, MainWindow win) {
@@ -38,6 +39,10 @@ public class RunSubprograms {
             
             case Subprograms.Exercice2B3:
                 _ = MenuLoaders.Run_Exo2B3(win);
+                break;
+            
+            case Subprograms.Exercice3B3:
+                _ = MenuLoaders.Run_Exo3B3(win);
                 break;
 
             case Subprograms.Exercice2:

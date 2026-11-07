@@ -30,6 +30,9 @@ public class MenuLoaders {
     
     private const string _title_exo2b3 = "Exercice [ 2 - B3 ]";
     private const string _sub_exo2b3 = ": // DATE : OCT . 2026  //  T.ODOO";
+    
+    private const string _title_exo3b3 = "Exercice [ 3 - B3 ]";
+    private const string _sub_exo3b3 = ": // DATE : OCT . 2026  // CHRONOS";
 
     private const string _title_exo2 = "Exercice [ 2 ]";
     private const string _sub_exo2 = ": // DATE : FEB . 2026  //  TRANSFERT DE FICHIERS";
@@ -86,6 +89,9 @@ public class MenuLoaders {
     
     private static readonly SolidColorBrush _exo2b3_title = Brush("fcfe4d");
     private static readonly SolidColorBrush _exo2b3_sub = Brush("fcf4ed");
+    
+    private static readonly SolidColorBrush _exo3b3_title = Brush("d61c2e");
+    private static readonly SolidColorBrush _exo3b3_sub = Brush("e66f3c");
 
     private static readonly SolidColorBrush _exo2_title = Brush("FF4242");
     private static readonly SolidColorBrush _exo2_sub = Brush("FF9191");
@@ -399,23 +405,6 @@ public class MenuLoaders {
         await RunIntro(win, _title_exo1, _sub_exo1, _author, _exo1_title, _exo1_sub, _exo1_author);
         win.Exo1.Visibility = win.Exo1B.Visibility = Visibility.Visible;
     }
-
-    public static async Task Run_Exo1B3(MainWindow win) {
-        await RunIntro(win, _title_exo1b3, _sub_exo1b3, _author, _exo1b3_title, _exo1b3_sub, _exo1_author);
-        win.OutputBox.Visibility = Visibility.Collapsed;
-        win.InputBox.Visibility = Visibility.Collapsed;
-        win.InputBoxIndicator.Visibility = Visibility.Collapsed;
-        win.Exo1B3.Visibility = Visibility.Visible;
-    }
-    
-    public static async Task Run_Exo2B3(MainWindow win) {
-        await RunIntro(win, _title_exo2b3, _sub_exo2b3, _author, _exo2b3_title, _exo2b3_sub, _exo1_author);
-        win.OutputBox.Visibility = Visibility.Collapsed;
-        win.InputBox.Visibility = Visibility.Collapsed;
-        win.InputBoxIndicator.Visibility = Visibility.Collapsed;
-        win.Exo2B3.Visibility = Visibility.Visible;
-    }
-
     public static async Task Run_Exo2(MainWindow win) {
         await RunIntro(win, _title_exo2, _sub_exo2, _author, _exo2_title, _exo2_sub, _exo1_author);
         win.Exo2.Visibility = Visibility.Visible;
@@ -496,5 +485,29 @@ public class MenuLoaders {
 
     public static async Task RunOverseerWars(MainWindow win) {
         OverseerWarInit.Introduce(win);
+    }
+
+    public static async Task Run_Exo1B3(MainWindow win) {
+        await RunIntro(win, _title_exo1b3, _sub_exo1b3, _author, _exo1b3_title, _exo1b3_sub, _exo1_author);
+        win.OutputBox.Visibility = Visibility.Collapsed;
+        win.InputBox.Visibility = Visibility.Collapsed;
+        win.InputBoxIndicator.Visibility = Visibility.Collapsed;
+        win.Exo1B3.Visibility = Visibility.Visible;
+    }
+    
+    public static async Task Run_Exo2B3(MainWindow win) {
+        await RunIntro(win, _title_exo2b3, _sub_exo2b3, _author, _exo2b3_title, _exo2b3_sub, _exo1_author);
+        win.OutputBox.Visibility = Visibility.Collapsed;
+        win.InputBox.Visibility = Visibility.Collapsed;
+        win.InputBoxIndicator.Visibility = Visibility.Collapsed;
+        win.Exo2B3.Visibility = Visibility.Visible;
+    }
+    
+    public static async Task Run_Exo3B3(MainWindow win) {
+        await RunIntro(win, _title_exo3b3, _sub_exo3b3, _author, _exo3b3_title, _exo3b3_sub, _exo1_author);
+        win.OutputBox.Visibility = Visibility.Collapsed;
+        win.InputBox.Visibility = Visibility.Collapsed;
+        win.InputBoxIndicator.Visibility = Visibility.Collapsed;
+        win.Exo3B3.Visibility = Visibility.Visible;
     }
 }

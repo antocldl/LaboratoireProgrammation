@@ -154,9 +154,10 @@
             <Image Source="/Assets/images/vaultTec.png" Grid.ColumnSpan="3" HorizontalAlignment="Center" Panel.ZIndex="-5" Opacity="0.01" Stretch="Uniform"/>
         </Grid>
 
-        <StackPanel Grid.Row="2" HorizontalAlignment="Center" Margin="0,64,0,0">
+        <StackPanel Grid.Row="2" HorizontalAlignment="Center" Margin="0,48,0,0">
             <Button x:Name="StartBtn" Content="> INITIALIZE SIMULATION" Style="{StaticResource TerminalButton}" Click="OnStart"/>
-            <Button x:Name="LoadBtn" Content="> LOAD GAME" Style="{StaticResource TerminalButton}" Click="OnLoadGame" Margin="0,16,0,0"/>
+            <Button x:Name="LoadBtn" Content="> LOAD GAME" Style="{StaticResource TerminalButton}" Click="OnLoadGame" Margin="0,12,0,0"/>
+            <Button x:Name="MultiplayerBtn" Content="> MULTIPLAYER LINK [NET]" Style="{StaticResource TerminalButton}" Click="OnMultiplayer" Margin="0,12,0,0"/>
         </StackPanel>
     </Grid>
     

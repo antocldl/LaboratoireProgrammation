@@ -276,11 +276,12 @@ public partial class ControlCard : UserControl {
             Point pos = e.GetPosition(null);
             if (Math.Abs(pos.X - _dragStartPoint.X) > SystemParameters.MinimumHorizontalDragDistance ||
                 Math.Abs(pos.Y - _dragStartPoint.Y) > SystemParameters.MinimumVerticalDragDistance) {
+                var win = Window.GetWindow(this) as IOverseerGameWindow;
+                if (win != null && !win.CanInteract) return;
                 _isDragging = true;
                 DraggedCard = this;
-                var win = Window.GetWindow(this) as OverseerWarsWindow;
-                if (win != null) {
-                    Point winPos = e.GetPosition(win);
+                if (win != null && win is Window w) {
+                    Point winPos = e.GetPosition(w);
                     win.StartDraggingCard(this, winPos);
                 }
                 CaptureMouse();
@@ -288,9 +289,9 @@ public partial class ControlCard : UserControl {
         }
 
         if (_isDragging && IsMouseCaptured) {
-            var win = Window.GetWindow(this) as OverseerWarsWindow;
-            if (win != null) {
-                Point winPos = e.GetPosition(win);
+            var win = Window.GetWindow(this) as IOverseerGameWindow;
+            if (win != null && win is Window w) {
+                Point winPos = e.GetPosition(w);
                 win.MoveDraggingCard(this, winPos);
             }
         }
@@ -301,9 +302,9 @@ public partial class ControlCard : UserControl {
             _isDragging = false;
             DraggedCard = null;
             ReleaseMouseCapture();
-            var win = Window.GetWindow(this) as OverseerWarsWindow;
-            if (win != null) {
-                Point winPos = e.GetPosition(win);
+            var win = Window.GetWindow(this) as IOverseerGameWindow;
+            if (win != null && win is Window w) {
+                Point winPos = e.GetPosition(w);
                 win.StopDraggingCard(this, winPos);
             }
         }
@@ -330,8 +331,8 @@ public partial class ControlCard : UserControl {
 
     public void OpenContextMenu() {
         if (BoundDweller == null) return;
-        var win = Window.GetWindow(this) as OverseerWarsWindow ?? System.Windows.Application.Current.Windows.OfType<OverseerWarsWindow>().FirstOrDefault();
-        if (win == null) return;
+        var win = Window.GetWindow(this) as IOverseerGameWindow ?? System.Windows.Application.Current.Windows.OfType<IOverseerGameWindow>().FirstOrDefault();
+        if (win == null || !win.CanInteract) return;
 
         Color fgColor = win.GetThemeColor();
         Color bgColor = win.GetThemeBgDark();
@@ -378,9 +379,7 @@ public partial class ControlCard : UserControl {
                 Style = (Style)FindResource("ThemedMenuItem")
             };
             miEquipped.Click += (s, ev) => {
-                BoundDweller.EquippedWeapon = null;
-                win.State.AddLog($"{BoundDweller.Name} unequipped {equippedWeapon.Name}");
-                win.RefreshAll();
+                win.RequestUnequip(BoundDweller, true);
             };
             miWeapon.Items.Add(miEquipped);
             miWeapon.Items.Add(new Separator());
@@ -408,9 +407,7 @@ public partial class ControlCard : UserControl {
                     Style = (Style)FindResource("ThemedMenuItem")
                 };
                 miW.Click += (s, ev) => {
-                    BoundDweller.EquippedWeapon = weapon;
-                    win.State.AddLog($"{BoundDweller.Name} equipped {weapon.Name}");
-                    win.RefreshAll();
+                    win.RequestEquip(BoundDweller, weapon, true);
                 };
                 miWeapon.Items.Add(miW);
             }
@@ -443,9 +440,7 @@ public partial class ControlCard : UserControl {
                 Style = (Style)FindResource("ThemedMenuItem")
             };
             miEquipped.Click += (s, ev) => {
-                BoundDweller.EquippedOutfit = null;
-                win.State.AddLog($"{BoundDweller.Name} unequipped {equippedOutfit.Name}");
-                win.RefreshAll();
+                win.RequestUnequip(BoundDweller, false);
             };
             miOutfit.Items.Add(miEquipped);
             miOutfit.Items.Add(new Separator());
@@ -477,9 +472,7 @@ public partial class ControlCard : UserControl {
                     Style = (Style)FindResource("ThemedMenuItem")
                 };
                 miO.Click += (s, ev) => {
-                    BoundDweller.EquippedOutfit = outfit;
-                    win.State.AddLog($"{BoundDweller.Name} equipped {outfit.Name}");
-                    win.RefreshAll();
+                    win.RequestEquip(BoundDweller, outfit, false);
                 };
                 miOutfit.Items.Add(miO);
             }
